@@ -92,7 +92,7 @@ export default function NotFound() {
             </div>
 
             <h1 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
-              Whoops.
+              Looks like you&apos;re just making up words!
             </h1>
             <p className="text-indigo-200 text-base leading-relaxed mb-10 max-w-sm mx-auto">
               That page doesn&apos;t exist or has been moved. Let&apos;s get you back to the Word.
