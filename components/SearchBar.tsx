@@ -83,9 +83,6 @@ export default function SearchBar({ large = false }: { large?: boolean }) {
                 onClick={() => select(r.slug)}
               >
                 <span className="font-medium text-slate-900">{r.title}</span>
-                {r.pronunciation && (
-                  <span className="text-sm text-slate-400 font-mono">{r.pronunciation}</span>
-                )}
               </button>
             </li>
           ))}

@@ -139,7 +139,7 @@ async function LetterPage({ letter }: { letter: string }) {
           ))}
         </div>
 
-        <AdUnit slot="5253930888" className="mb-4" />
+        <AdUnit slot="6127268085" className="mb-4" />
 
         {/* Word list */}
         <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
@@ -352,7 +352,7 @@ async function WordPage({ slug }: { slug: string }) {
 
         {word.content && (
           <>
-            <AdUnit slot="5253930888" />
+            <AdUnit slot="6127268085" />
 
             <details className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden group">
               <summary className="px-6 py-3.5 border-b border-slate-100 bg-slate-50 flex items-center gap-2 cursor-pointer list-none select-none hover:bg-slate-100 transition-colors">
@@ -373,7 +373,7 @@ async function WordPage({ slug }: { slug: string }) {
               </div>
             </details>
 
-            <AdUnit slot="5253930888" />
+            <AdUnit slot="6127268085" />
           </>
         )}
 
