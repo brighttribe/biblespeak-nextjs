@@ -6,10 +6,14 @@
     "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "indexnow": "npx tsx scripts/indexnow.ts",
+    "regenerate": "npx tsx scripts/regenerate-content.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.92.0",
     "@supabase/supabase-js": "^2.105.1",
+    "@tailwindcss/typography": "^0.5.19",
     "dotenv": "^17.4.2",
     "next": "16.2.4",
     "react": "19.2.4",
@@ -19,11 +23,13 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/pg": "^8.20.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/xml2js": "^0.4.14",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
+    "pg": "^8.20.0",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
     "typescript": "^5"
