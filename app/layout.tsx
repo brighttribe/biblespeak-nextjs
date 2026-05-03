@@ -44,6 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <nav className="hidden sm:flex items-center gap-5 text-sm text-white/60 shrink-0">
               <Link href="/" className="hover:text-white transition-colors">Home</Link>
               <Link href="/a-words/" className="hover:text-white transition-colors">Browse A–Z</Link>
+              <Link href="/about/" className="hover:text-white transition-colors">About</Link>
             </nav>
 
             <div className="w-52 shrink-0">
@@ -71,6 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <div className="flex flex-col gap-2">
                     <Link href="/a-words/" className="hover:text-white transition-colors">A–Z Index</Link>
                     <Link href="/" className="hover:text-white transition-colors">Home</Link>
+                    <Link href="/about/" className="hover:text-white transition-colors">About</Link>
                   </div>
                 </div>
               </div>

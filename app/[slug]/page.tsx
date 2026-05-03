@@ -188,6 +188,44 @@ async function WordPage({ slug }: { slug: string }) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://biblespeak.org'
   const pageUrl = `${siteUrl}/${word.slug}/`
 
+  const syllables = word.pronunciation ? word.pronunciation.split('-').join(' · ') : null
+  const syllableCount = word.pronunciation ? word.pronunciation.split('-').length : null
+
+  const faqItems = [
+    {
+      '@type': 'Question',
+      name: `How do you pronounce ${word.title}?`,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: `${word.title} is pronounced ${word.pronunciation ?? word.title}${syllables ? ` (${syllables})` : ''}. Use the audio guide on this page to hear the correct pronunciation.`,
+      },
+    },
+    {
+      '@type': 'Question',
+      name: `How do you say ${word.title} in English?`,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: `In English, ${word.title} is said as "${word.pronunciation ?? word.title}"${syllableCount ? ` — ${syllableCount} syllable${syllableCount !== 1 ? 's' : ''}` : ''}. Stress the capitalized syllable when speaking it aloud.`,
+      },
+    },
+    ...(word.meaning ? [{
+      '@type': 'Question',
+      name: `What does ${word.title} mean in the Bible?`,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: word.meaning,
+      },
+    }] : []),
+    {
+      '@type': 'Question',
+      name: `Is ${word.title} hard to pronounce?`,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: `${word.title} can be tricky for modern readers. The phonetic spelling is ${word.pronunciation ?? word.title}${syllables ? `, broken into syllables: ${syllables}` : ''}. Listening to the audio recording on this page is the fastest way to get it right.`,
+      },
+    },
+  ]
+
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -200,6 +238,10 @@ async function WordPage({ slug }: { slug: string }) {
           '@type': 'Organization',
           name: 'Bible Speak',
           url: siteUrl,
+        },
+        speakable: {
+          '@type': 'SpeakableSpecification',
+          cssSelector: ['h1', '.pronunciation-speakable'],
         },
         ...(word.audio_file && {
           audio: {
@@ -217,6 +259,34 @@ async function WordPage({ slug }: { slug: string }) {
           { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
           ...(word.letter ? [{ '@type': 'ListItem', position: 2, name: `${word.letter.toUpperCase()} Words`, item: `${siteUrl}/${word.letter}-words/` }] : []),
           { '@type': 'ListItem', position: word.letter ? 3 : 2, name: word.title, item: pageUrl },
+        ],
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: faqItems,
+      },
+      {
+        '@type': 'HowTo',
+        name: `How to Pronounce ${word.title}`,
+        description: `Step-by-step guide to correctly pronouncing the biblical word or name ${word.title}`,
+        step: [
+          {
+            '@type': 'HowToStep',
+            name: 'Learn the syllables',
+            text: syllables
+              ? `Break ${word.title} into syllables: ${syllables}`
+              : `Study the phonetic spelling of ${word.title}: ${word.pronunciation ?? word.title}`,
+          },
+          {
+            '@type': 'HowToStep',
+            name: 'Listen to the audio',
+            text: `Use the audio player on this page to hear ${word.title} pronounced correctly by a native speaker.`,
+          },
+          {
+            '@type': 'HowToStep',
+            name: 'Practice aloud',
+            text: `Say ${word.title} aloud following the phonetic guide: ${word.pronunciation ?? word.title}. Repeat until it feels natural.`,
+          },
         ],
       },
     ],
@@ -250,7 +320,7 @@ async function WordPage({ slug }: { slug: string }) {
           <h1 className="text-5xl font-bold mb-5">{word.title}</h1>
 
           {word.pronunciation && (
-            <div className="inline-flex items-center gap-2.5 bg-white/10 border border-white/20 text-white px-5 py-2.5 rounded-full font-mono text-xl mb-7 backdrop-blur-sm">
+            <div className="pronunciation-speakable inline-flex items-center gap-2.5 bg-white/10 border border-white/20 text-white px-5 py-2.5 rounded-full font-mono text-xl mb-7 backdrop-blur-sm">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
                 <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
