@@ -3,7 +3,6 @@ import { Inter } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
 import Script from 'next/script'
-import SearchBar from '@/components/SearchBar'
 import MobileMenu from '@/components/MobileMenu'
 import './globals.css'
 
@@ -48,10 +47,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/about/" className="hover:text-white transition-colors">About</Link>
               <Link href="/contact/" className="hover:text-white transition-colors">Contact</Link>
             </nav>
-
-            <div className="hidden sm:block w-52 shrink-0">
-              <SearchBar />
-            </div>
 
             <MobileMenu />
           </div>
