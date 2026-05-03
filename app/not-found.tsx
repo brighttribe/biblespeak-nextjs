@@ -45,7 +45,7 @@ export default function NotFound() {
       `}</style>
 
       <div
-        className="min-h-screen flex items-center justify-center relative overflow-hidden"
+        className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden"
         style={{ background: 'radial-gradient(ellipse at 50% 40%, #1a1245 0%, #0f0a2e 60%, #07041a 100%)' }}
       >
         {/* Grid texture */}
