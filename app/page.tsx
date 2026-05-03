@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import SearchBar from '@/components/SearchBar'
 
 export const metadata: Metadata = {
   title: 'BibleSpeak.org — How to Pronounce Bible Words & Names',
@@ -28,6 +29,13 @@ export default function HomePage() {
   return (
     <main>
 
+      {/* ── Mobile Search ── */}
+      <div className="sm:hidden bg-navy px-4 pb-5 pt-3">
+        <div className="max-w-sm mx-auto">
+          <SearchBar />
+        </div>
+      </div>
+
       {/* ── Hero ── */}
       <section className="relative bg-navy overflow-hidden text-white">
         {/* Grid texture */}
@@ -52,7 +60,7 @@ export default function HomePage() {
             Audio guides for 858 biblical words, names, and places — with phonetic spelling, meaning, and historical context.
           </p>
 
-          <p className="mt-8 text-white/30 text-sm">
+          <p className="hidden sm:block mt-8 text-white/30 text-sm">
             Use the search bar in the top-right to look up any word instantly
           </p>
         </div>

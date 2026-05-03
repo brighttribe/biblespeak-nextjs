@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Script from 'next/script'
 import SearchBar from '@/components/SearchBar'
+import MobileMenu from '@/components/MobileMenu'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -48,9 +49,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/contact/" className="hover:text-white transition-colors">Contact</Link>
             </nav>
 
-            <div className="w-52 shrink-0">
+            <div className="hidden sm:block w-52 shrink-0">
               <SearchBar />
             </div>
+
+            <MobileMenu />
           </div>
         </header>
 
