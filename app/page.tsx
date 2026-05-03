@@ -2,7 +2,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Bible Speak — How to Pronounce Bible Words & Names',
+  title: 'BibleSpeak.org — How to Pronounce Bible Words & Names',
   description:
     'Learn how to correctly pronounce Bible words, names, and places. Audio pronunciation guides for 858 biblical terms.',
 }
@@ -60,14 +60,15 @@ export default function HomePage() {
       </section>
 
       {/* ── Browse by Letter ── */}
-      <section className="py-20 px-4 bg-slate-50">
+      <section className="pt-10 pb-20 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-slate-900 mb-2">Browse by Letter</h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-2">Browse Bible Words by Letter</h2>
             <p className="text-slate-500 text-sm">Select a letter to see all Bible words starting with it</p>
           </div>
-          <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6">
-            <div className="flex flex-wrap justify-center gap-2">
+          <div className="bg-white rounded-3xl border border-slate-200 shadow-md p-6 relative overflow-hidden">
+            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-dark via-brand to-brand-light" />
+            <div className="flex flex-wrap justify-center gap-2 pt-2">
               {LETTERS.map((letter) => (
                 <Link
                   key={letter}

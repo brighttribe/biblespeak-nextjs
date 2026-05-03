@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'About Bible Speak | Bible Word Pronunciation Guide',
-  description: 'Bible Speak is the most comprehensive Bible word pronunciation resource on the web — audio guides, phonetic spelling, and biblical context for 858 words and names.',
+  title: 'About BibleSpeak.org | Bible Word Pronunciation Guide',
+  description: 'BibleSpeak.org is the most comprehensive Bible word pronunciation resource on the web — audio guides, phonetic spelling, and biblical context for 858 words and names.',
   openGraph: {
-    title: 'About Bible Speak | Bible Word Pronunciation Guide',
-    description: 'Bible Speak is the most comprehensive Bible word pronunciation resource on the web — audio guides, phonetic spelling, and biblical context for 858 words and names.',
+    title: 'About BibleSpeak.org | Bible Word Pronunciation Guide',
+    description: 'BibleSpeak.org is the most comprehensive Bible word pronunciation resource on the web — audio guides, phonetic spelling, and biblical context for 858 words and names.',
   },
 }
 
@@ -23,12 +23,12 @@ export default function AboutPage() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
-    name: 'About Bible Speak',
-    description: 'Bible Speak is the most comprehensive Bible word pronunciation resource on the web.',
+    name: 'About BibleSpeak.org',
+    description: 'BibleSpeak.org is the most comprehensive Bible word pronunciation resource on the web.',
     url: `${siteUrl}/about/`,
     publisher: {
       '@type': 'Organization',
-      name: 'Bible Speak',
+      name: 'BibleSpeak.org',
       url: siteUrl,
       description: 'Audio pronunciation guides for biblical words, names, and places.',
     },
@@ -48,10 +48,10 @@ export default function AboutPage() {
             <span>›</span>
             <span className="text-white/70">About</span>
           </nav>
-          <p className="text-brand text-xs font-semibold uppercase tracking-widest mb-3">About Bible Speak</p>
+          <p className="text-brand text-xs font-semibold uppercase tracking-widest mb-3">About BibleSpeak.org</p>
           <h1 className="text-4xl font-bold mb-5">The Bible Pronunciation Resource Pastors and Bible Teachers Trust</h1>
           <p className="text-white/70 text-lg leading-relaxed max-w-2xl">
-            Bible Speak exists to help pastors, Bible teachers, Sunday school leaders, seminary students, and anyone who studies or preaches from Scripture pronounce biblical words with total confidence — completely free.
+            BibleSpeak.org exists to help pastors, Bible teachers, Sunday school leaders, seminary students, and anyone who studies or preaches from Scripture pronounce biblical words with total confidence — completely free.
           </p>
         </div>
       </div>
@@ -79,7 +79,7 @@ export default function AboutPage() {
               Have you ever been reading aloud in a Bible study or preaching from the pulpit and stumbled over a name like <strong>Mephibosheth</strong>, <strong>Zerubbabel</strong>, or <strong>Jehoshaphat</strong>? You're not alone. Biblical names come from ancient Hebrew, Aramaic, and Greek — languages most modern readers have never studied.
             </p>
             <p>
-              Mispronouncing a word mid-sermon is distracting. It can undermine your confidence and pull listeners out of the moment. Bible Speak removes that barrier entirely.
+              Mispronouncing a word mid-sermon is distracting. It can undermine your confidence and pull listeners out of the moment. BibleSpeak.org removes that barrier entirely.
             </p>
             <p>
               Every word on this site includes a clear phonetic spelling, an audio recording, the word's biblical meaning, and historical context — everything you need to walk into any teaching or study session prepared.
@@ -117,7 +117,7 @@ export default function AboutPage() {
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
           <div className="px-6 py-3.5 border-b border-slate-100 bg-slate-50 flex items-center gap-2">
             <div className="w-1.5 h-4 bg-brand rounded-full" />
-            <h2 className="text-xs font-semibold text-slate-500 uppercase tracking-widest">Who Uses Bible Speak</h2>
+            <h2 className="text-xs font-semibold text-slate-500 uppercase tracking-widest">Who Uses BibleSpeak.org</h2>
           </div>
           <div className="px-6 py-6">
             <div className="flex flex-wrap gap-2">
@@ -138,7 +138,7 @@ export default function AboutPage() {
           </div>
           <div className="px-6 py-6 space-y-4 text-slate-700 leading-relaxed">
             <p>
-              Bible Speak is a proud partner of{' '}
+              BibleSpeak.org is a proud partner of{' '}
               <a href="https://www.GraceOnlineLibrary.org" target="_blank" rel="noopener noreferrer" className="text-brand font-semibold hover:underline">
                 GraceOnlineLibrary.org
               </a>

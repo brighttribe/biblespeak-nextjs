@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Contact | Bible Speak',
-  description: 'Get in touch with the Bible Speak team.',
+  title: 'Contact | BibleSpeak.org',
+  description: 'Get in touch with the BibleSpeak.org team.',
   openGraph: {
-    title: 'Contact | Bible Speak',
-    description: 'Get in touch with the Bible Speak team.',
+    title: 'Contact | BibleSpeak.org',
+    description: 'Get in touch with the BibleSpeak.org team.',
   },
 }
 
@@ -24,7 +24,7 @@ export default function ContactPage() {
             <span className="text-white/70">Contact</span>
           </nav>
           <p className="text-brand text-xs font-semibold uppercase tracking-widest mb-3">Get in Touch</p>
-          <h1 className="text-4xl font-bold mb-5">Contact Bible Speak</h1>
+          <h1 className="text-4xl font-bold mb-5">Contact BibleSpeak.org</h1>
           <p className="text-white/70 text-lg leading-relaxed max-w-xl">
             Have a question, a word suggestion, or a correction? We'd love to hear from you.
           </p>

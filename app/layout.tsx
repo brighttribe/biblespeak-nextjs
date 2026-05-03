@@ -10,20 +10,20 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: {
-    default: 'Bible Speak — How to Pronounce Bible Words & Names',
-    template: '%s | Bible Speak',
+    default: 'BibleSpeak.org — How to Pronounce Bible Words & Names',
+    template: '%s | BibleSpeak.org',
   },
   description: 'Audio pronunciation guides for 858 biblical words and names.',
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://biblespeak.org'),
   openGraph: {
     type: 'website',
-    siteName: 'Bible Speak',
-    title: 'Bible Speak — How to Pronounce Bible Words & Names',
+    siteName: 'BibleSpeak.org',
+    title: 'BibleSpeak.org — How to Pronounce Bible Words & Names',
     description: 'Audio pronunciation guides for 858 biblical words and names.',
   },
   twitter: {
     card: 'summary',
-    title: 'Bible Speak — How to Pronounce Bible Words & Names',
+    title: 'BibleSpeak.org — How to Pronounce Bible Words & Names',
     description: 'Audio pronunciation guides for 858 biblical words and names.',
   },
 }
@@ -36,7 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="bg-navy sticky top-0 z-40 border-b border-white/10">
           <div className="max-w-5xl mx-auto px-4 h-16 flex items-center gap-4">
             <Link href="/" className="shrink-0">
-              <Image src="/bible-speak-wht.png" alt="Bible Speak" width={150} height={39} priority />
+              <Image src="/bible-speak.png" alt="BibleSpeak.org" width={150} height={39} priority />
             </Link>
 
             <div className="flex-1" />
@@ -62,7 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="max-w-5xl mx-auto px-4">
             <div className="flex flex-col sm:flex-row items-start justify-between gap-8 mb-8">
               <div>
-                <Image src="/bible-speak-wht.png" alt="Bible Speak" width={130} height={34} />
+                <Image src="/bible-speak.png" alt="BibleSpeak.org" width={130} height={34} />
                 <p className="mt-3 text-sm text-white/40 max-w-xs leading-relaxed">
                   The most comprehensive Bible word pronunciation resource on the web — all for free.
                 </p>
@@ -80,7 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
             </div>
             <div className="border-t border-white/10 pt-6 text-xs text-white/30">
-              © {new Date().getFullYear()} Bible Speak — Audio pronunciation guides for Bible words &amp; names
+              © {new Date().getFullYear()} BibleSpeak.org — Audio pronunciation guides for Bible words &amp; names
             </div>
           </div>
         </footer>

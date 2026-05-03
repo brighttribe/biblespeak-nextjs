@@ -26,7 +26,7 @@ export async function generateMetadata({
   const letterMatch = slug.match(/^([a-z])-words$/)
   if (letterMatch) {
     const letter = letterMatch[1]
-    const title = `Bible Words Starting with ${letter.toUpperCase()} | Bible Speak`
+    const title = `Bible Words Starting with ${letter.toUpperCase()} | BibleSpeak.org`
     const description = `Pronunciation guides for all Bible words and names starting with the letter ${letter.toUpperCase()}.`
     return {
       title,
@@ -45,7 +45,7 @@ export async function generateMetadata({
 
   if (!word) return {}
 
-  const title = `How to Pronounce ${word.title} | Bible Speak`
+  const title = `${word.title} Pronunciation — How to Say It | BibleSpeak.org`
   const description = `Learn the correct pronunciation of ${word.title}${word.pronunciation ? ` (${word.pronunciation})` : ''} with an audio guide, phonetic spelling, and biblical context.`
   return {
     title,
@@ -236,7 +236,7 @@ async function WordPage({ slug }: { slug: string }) {
         url: pageUrl,
         publisher: {
           '@type': 'Organization',
-          name: 'Bible Speak',
+          name: 'BibleSpeak.org',
           url: siteUrl,
         },
         speakable: {
