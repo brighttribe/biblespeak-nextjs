@@ -80,7 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
             </div>
             <div className="border-t border-white/10 pt-6 text-xs text-white/30">
-              © {new Date().getFullYear()} BibleSpeak.org — Audio pronunciation guides for Bible words &amp; names
+              © {new Date().getFullYear()}{' '}BibleSpeak.org — Audio pronunciation guides for Bible words &amp; names
             </div>
           </div>
         </footer>
