@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { createSupabaseClient, audioUrl } from '@/lib/supabase'
 import AudioPlayer from '@/components/AudioPlayer'
 import AdUnit from '@/components/AdUnit'
+import BackToTop from '@/components/BackToTop'
 import Link from 'next/link'
 
 const LETTERS = 'abcdefghijklmnopqrstuvwxyz'.split('')
@@ -123,12 +124,12 @@ async function LetterPage({ letter }: { letter: string }) {
 
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* A–Z nav */}
-        <div className="flex flex-wrap gap-1.5 mb-8 p-4 bg-white rounded-2xl border border-slate-200 shadow-sm">
+        <div className="flex flex-wrap justify-center gap-2 mb-8 p-4 bg-white rounded-2xl border border-slate-200 shadow-sm">
           {LETTERS.map((l) => (
             <Link
               key={l}
               href={`/${l}-words/`}
-              className={`flex items-center justify-center w-9 h-9 rounded-lg text-sm font-semibold transition-all ${
+              className={`flex items-center justify-center w-11 h-11 rounded-lg text-base font-bold transition-all ${
                 l === letter
                   ? 'bg-brand text-white shadow-sm'
                   : 'text-slate-500 hover:bg-brand/10 hover:text-brand'
@@ -147,8 +148,8 @@ async function LetterPage({ letter }: { letter: string }) {
             <p className="px-6 py-12 text-slate-400 text-center">No words found for this letter.</p>
           ) : (
             <ul className="divide-y divide-slate-100">
-              {(words ?? []).map((word) => (
-                <li key={word.slug}>
+              {(words ?? []).map((word, i) => (
+                <li key={word.slug} className={i % 2 === 0 ? 'bg-white' : 'bg-slate-50/60'}>
                   <Link
                     href={`/${word.slug}/`}
                     className="flex items-center justify-between px-6 py-3.5 hover:bg-brand/5 transition-colors group"
@@ -168,6 +169,7 @@ async function LetterPage({ letter }: { letter: string }) {
           )}
         </div>
       </div>
+      <BackToTop />
     </main>
   )
 }
@@ -354,7 +356,7 @@ async function WordPage({ slug }: { slug: string }) {
           <>
             <AdUnit slot="6127268085" />
 
-            <details className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden group">
+            <details open className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden group">
               <summary className="px-6 py-3.5 border-b border-slate-100 bg-slate-50 flex items-center gap-2 cursor-pointer list-none select-none hover:bg-slate-100 transition-colors">
                 <div className="w-1.5 h-4 bg-brand rounded-full shrink-0" />
                 <span className="text-xs font-semibold text-slate-500 uppercase tracking-widest flex-1">Historical Context</span>
