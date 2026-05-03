@@ -49,7 +49,7 @@ export default function AboutPage() {
             <span className="text-white/70">About</span>
           </nav>
           <p className="text-brand text-xs font-semibold uppercase tracking-widest mb-3">About Bible Speak</p>
-          <h1 className="text-4xl font-bold mb-5">The Bible Pronunciation Resource Pastors Trust</h1>
+          <h1 className="text-4xl font-bold mb-5">The Bible Pronunciation Resource Pastors and Bible Teachers Trust</h1>
           <p className="text-white/70 text-lg leading-relaxed max-w-2xl">
             Bible Speak exists to help pastors, Bible teachers, Sunday school leaders, seminary students, and anyone who studies or preaches from Scripture pronounce biblical words with total confidence — completely free.
           </p>
