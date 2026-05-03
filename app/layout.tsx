@@ -57,7 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </div>
 
-        <footer className="bg-navy-dark text-white/50 py-12 mt-16">
+        <footer className="bg-navy-dark text-white/50 py-12">
           <div className="max-w-5xl mx-auto px-4">
             <div className="flex flex-col sm:flex-row items-start justify-between gap-8 mb-8">
               <div>
