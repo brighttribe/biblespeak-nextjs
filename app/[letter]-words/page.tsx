@@ -15,6 +15,7 @@ export async function generateMetadata({
   params: Promise<{ letter: string }>
 }): Promise<Metadata> {
   const { letter } = await params
+  if (!letter) return {}
   return {
     title: `Bible Words Starting with ${letter.toUpperCase()} | Bible Speak`,
     description: `Pronunciation guides for all Bible words and names starting with the letter ${letter.toUpperCase()}.`,
