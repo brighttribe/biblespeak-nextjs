@@ -130,21 +130,25 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Credibility / trust */}
+        {/* Partner / credibility */}
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
           <div className="px-6 py-3.5 border-b border-slate-100 bg-slate-50 flex items-center gap-2">
             <div className="w-1.5 h-4 bg-brand rounded-full" />
-            <h2 className="text-xs font-semibold text-slate-500 uppercase tracking-widest">Our Approach</h2>
+            <h2 className="text-xs font-semibold text-slate-500 uppercase tracking-widest">Trusted Partner</h2>
           </div>
           <div className="px-6 py-6 space-y-4 text-slate-700 leading-relaxed">
             <p>
-              Pronunciations on Bible Speak follow established scholarly and traditional conventions used in seminaries and Bible colleges. Where pronunciations vary across traditions, we use the most widely accepted English rendering.
+              Bible Speak is a proud partner of{' '}
+              <a href="https://www.GraceOnlineLibrary.org" target="_blank" rel="noopener noreferrer" className="text-brand font-semibold hover:underline">
+                GraceOnlineLibrary.org
+              </a>
+              {' '}— a trusted Bible study resource that has served Christians online for over 25 years. That depth of biblical scholarship informs the content and standards you'll find throughout this site.
+            </p>
+            <p>
+              Pronunciations follow established scholarly and traditional conventions used in seminaries and Bible colleges. Where pronunciations vary across traditions, we use the most widely accepted English rendering.
             </p>
             <p>
               Audio recordings are clear, deliberate, and designed for easy repetition. Each word is spoken at a natural teaching pace so you can hear every syllable distinctly.
-            </p>
-            <p>
-              Historical and contextual content draws from biblical scholarship to give you more than just a pronunciation — it gives you the background you need to teach the word meaningfully.
             </p>
           </div>
         </div>
