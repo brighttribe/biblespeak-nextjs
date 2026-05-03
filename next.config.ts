@@ -8,13 +8,13 @@ const nextConfig: NextConfig = {
         source: '/:path*',
         has: [{ type: 'host', value: 'thebibleworkshop.com' }],
         destination: 'https://biblespeak.org/:path*',
-        permanent: true,
+        statusCode: 301,
       },
       {
         source: '/:path*',
         has: [{ type: 'host', value: 'www.thebibleworkshop.com' }],
         destination: 'https://biblespeak.org/:path*',
-        permanent: true,
+        statusCode: 301,
       },
     ]
   },
