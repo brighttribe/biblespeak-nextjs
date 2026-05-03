@@ -33,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={inter.className}>
       <body className="bg-slate-50 text-slate-900 antialiased">
 
-        <header className="bg-navy sticky top-0 z-40 border-b border-white/10">
+        <header className="bg-white sticky top-0 z-40 border-b border-slate-200 shadow-sm">
           <div className="max-w-5xl mx-auto px-4 h-16 flex items-center gap-4">
             <Link href="/" className="shrink-0">
               <Image src="/bible-speak-prpl.png" alt="Bible Speak" width={150} height={39} priority />
@@ -41,11 +41,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
             <div className="flex-1" />
 
-            <nav className="hidden sm:flex items-center gap-7 text-base font-semibold text-white/70 shrink-0 mr-4">
-              <Link href="/" className="hover:text-white transition-colors">Home</Link>
-              <Link href="/a-words/" className="hover:text-white transition-colors">Browse A–Z</Link>
-              <Link href="/about/" className="hover:text-white transition-colors">About</Link>
-              <Link href="/contact/" className="hover:text-white transition-colors">Contact</Link>
+            <nav className="hidden sm:flex items-center gap-7 text-base font-semibold text-slate-600 shrink-0 mr-4">
+              <Link href="/" className="hover:text-brand transition-colors">Home</Link>
+              <Link href="/a-words/" className="hover:text-brand transition-colors">Browse A–Z</Link>
+              <Link href="/about/" className="hover:text-brand transition-colors">About</Link>
+              <Link href="/contact/" className="hover:text-brand transition-colors">Contact</Link>
             </nav>
 
             <div className="w-52 shrink-0">
