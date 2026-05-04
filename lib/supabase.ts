@@ -8,5 +8,6 @@ export function createSupabaseClient() {
 }
 
 export function audioUrl(audioFile: string): string {
-  return `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/audio/${audioFile}.mp3`
+  const base = (process.env.NEXT_PUBLIC_SUPABASE_URL ?? '').trim()
+  return `${base}/storage/v1/object/public/audio/${audioFile}.mp3`
 }
