@@ -39,10 +39,6 @@ export default function HomePage() {
         <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-brand-dark/30 rounded-full blur-[100px] translate-y-1/4" />
 
         <div className="relative max-w-3xl mx-auto px-4 py-20 text-center">
-          <div className="w-4/5 mx-auto mb-10">
-            <SearchBar large />
-          </div>
-
           <div className="inline-flex items-center gap-2 bg-brand/15 text-brand-light text-xs font-semibold px-4 py-1.5 rounded-full mb-8 border border-brand/25 uppercase tracking-wider">
             <span className="w-1.5 h-1.5 bg-brand rounded-full animate-pulse" />
             858 Bible words with audio
@@ -56,6 +52,10 @@ export default function HomePage() {
           <p className="text-lg text-white/70 max-w-xl mx-auto leading-relaxed">
             Audio guides for 858 biblical words, names, and places — with phonetic spelling, meaning, and historical context.
           </p>
+
+          <div className="w-4/5 mx-auto mt-8">
+            <SearchBar />
+          </div>
         </div>
 
       </section>
