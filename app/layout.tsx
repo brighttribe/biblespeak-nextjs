@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="bg-navy sticky top-0 z-40 border-b border-white/10">
           <div className="max-w-5xl mx-auto px-4 h-16 flex items-center gap-4">
             <Link href="/" className="shrink-0">
-              <Image src="/bible-speak.png" alt="BibleSpeak.org" width={150} height={39} priority />
+              <Image src="/bible-speak.png" alt="BibleSpeak.org" width={165} height={43} priority />
             </Link>
 
             <div className="flex-1" />

@@ -69,7 +69,7 @@ export default function SearchBar({ large = false }: { large?: boolean }) {
           onFocus={() => results.length > 0 && setOpen(true)}
           placeholder="Search Bible Words"
           className={`w-full bg-white border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent shadow-sm ${
-            large ? 'pl-12 pr-4 py-4 text-lg' : 'pl-10 pr-4 py-2.5 text-base'
+            large ? 'pl-12 pr-4 py-4 text-lg' : 'pl-10 pr-4 py-1.5 text-base'
           }`}
         />
       </div>
