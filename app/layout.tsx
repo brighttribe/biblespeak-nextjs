@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
 import Script from 'next/script'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import SearchBar from '@/components/SearchBar'
 import MobileMenu from '@/components/MobileMenu'
 import './globals.css'
@@ -91,23 +92,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <Script
           async
-          src="https://www.googletagmanager.com/gtag/js?id=G-C4ES3L9CPJ"
-          strategy="afterInteractive"
-        />
-        <Script id="ga4-init" strategy="afterInteractive">{`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-C4ES3L9CPJ');
-        `}</Script>
-
-        <Script
-          async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2677571790916419"
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
       </body>
+      <GoogleAnalytics gaId="G-C4ES3L9CPJ" />
     </html>
   )
 }
