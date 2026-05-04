@@ -153,6 +153,19 @@ export default function AboutPage() {
           </div>
         </div>
 
+        {/* Advertising disclosure */}
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+          <div className="px-6 py-3.5 border-b border-slate-100 bg-slate-50 flex items-center gap-2">
+            <div className="w-1.5 h-4 bg-brand rounded-full" />
+            <h2 className="text-xs font-semibold text-slate-500 uppercase tracking-widest">Advertising</h2>
+          </div>
+          <div className="px-6 py-6 text-slate-700 leading-relaxed">
+            <p>
+              BibleSpeak.org is free to use and supported by advertising. Ads help cover the costs of hosting, audio production, and ongoing development so the site can remain available at no charge to everyone.
+            </p>
+          </div>
+        </div>
+
         {/* CTA */}
         <div className="relative bg-navy overflow-hidden rounded-2xl p-8 text-center">
           <div className="grid-pattern absolute inset-0 opacity-50" />
