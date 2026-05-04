@@ -319,21 +319,14 @@ async function WordPage({ slug }: { slug: string }) {
           </nav>
 
           <p className="text-brand text-xs font-semibold uppercase tracking-widest mb-3">Pronunciation Guide</p>
-          <h1 className="text-5xl font-bold mb-5">{word.title}</h1>
+          <h1 className="text-5xl font-bold mb-7">
+            {word.title}
+            {word.pronunciation && (
+              <span className="pronunciation-speakable block text-2xl font-normal font-mono text-white/60 mt-2">{word.pronunciation}</span>
+            )}
+          </h1>
 
-          {word.pronunciation && (
-            <div className="pronunciation-speakable inline-flex items-center gap-2.5 bg-white/10 border border-white/20 text-white px-5 py-2.5 rounded-full font-mono text-xl mb-7 backdrop-blur-sm">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-                <line x1="12" y1="19" x2="12" y2="23"/>
-                <line x1="8" y1="23" x2="16" y2="23"/>
-              </svg>
-              {word.pronunciation}
-            </div>
-          )}
-
-          {word.audio_file && <AudioPlayer src={audioUrl(word.audio_file)} dark />}
+          {word.audio_file && <AudioPlayer src={audioUrl(word.audio_file)} dark title={word.title} />}
         </div>
 
       </div>

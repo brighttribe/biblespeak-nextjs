@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react'
 
-export default function AudioPlayer({ src, dark = false }: { src: string; dark?: boolean }) {
+export default function AudioPlayer({ src, dark = false, title }: { src: string; dark?: boolean; title?: string }) {
   const audioRef = useRef<HTMLAudioElement>(null)
   const [playing, setPlaying] = useState(false)
 
@@ -41,7 +41,7 @@ export default function AudioPlayer({ src, dark = false }: { src: string; dark?:
       </button>
       <div>
         <p className={`text-sm font-medium ${dark ? 'text-white' : 'text-slate-700'}`}>
-          {playing ? 'Playing...' : 'Hear the pronunciation'}
+          {playing ? 'Playing...' : title ? `Hear the pronunciation of ${title}` : 'Hear the pronunciation'}
         </p>
         <p className={`text-xs ${dark ? 'text-indigo-200' : 'text-slate-400'}`}>
           Click to play audio
