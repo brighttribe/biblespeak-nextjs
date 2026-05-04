@@ -53,7 +53,7 @@ export default function HomePage() {
             Audio guides for 858 biblical words, names, and places — with phonetic spelling, meaning, and historical context.
           </p>
 
-          <div className="w-4/5 mx-auto mt-8">
+          <div className="w-4/5 mx-auto mt-8 md:hidden">
             <SearchBar />
           </div>
         </div>
