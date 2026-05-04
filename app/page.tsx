@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import SearchBar from '@/components/SearchBar'
 
 export const metadata: Metadata = {
-  title: 'BibleSpeak.org — How to Pronounce Bible Words & Names',
+  title: 'How to Pronounce Bible Names & Words | BibleSpeak.org',
   description:
     'Learn how to correctly pronounce Bible words, names, and places. Audio pronunciation guides for 858 biblical terms.',
 }
