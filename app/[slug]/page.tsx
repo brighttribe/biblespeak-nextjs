@@ -318,7 +318,7 @@ async function WordPage({ slug }: { slug: string }) {
             <span className="text-white/70">{word.title}</span>
           </nav>
 
-          <p className="text-brand text-xs font-semibold uppercase tracking-widest mb-3">Pronunciation Guide</p>
+          <p className="text-brand text-xs font-semibold uppercase tracking-widest mb-3">How to Pronounce</p>
           <h1 className="text-5xl font-bold mb-7">
             {word.title}
             {word.pronunciation && (
