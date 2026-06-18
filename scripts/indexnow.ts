@@ -1,21 +1,34 @@
 import dotenv from 'dotenv'
 import path from 'path'
+import words from '../data/words.json'
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') })
 
-import { createClient } from '@supabase/supabase-js'
-
-const sb = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!)
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://biblespeak.org'
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://biblespeak.org').trim()
 const INDEXNOW_KEY = 'b5f8a2c1d4e7f0b3a6c9d2e5'
 const LETTERS = 'abcdefghijklmnopqrstuvwxyz'.split('')
 
-async function main() {
-  const { data: words } = await sb.from('words').select('slug')
-  if (!words) { console.error('No words found'); process.exit(1) }
+const HUB_PAGES = [
+  'how-to-pronounce-bible-names',
+  'biblical-names-pronunciation',
+  'how-to-pronounce-bible-names-with-ease',
+  'acts-2-pronunciation',
+  'bible-places-pronunciation',
+  'hardest-bible-words-to-pronounce',
+  'old-testament-names-pronunciation',
+  'new-testament-names-pronunciation',
+  'bible-prophets-pronunciation',
+  'women-of-the-bible-pronunciation',
+  'apostles-names-pronunciation',
+  'bible-pronunciation-audio',
+  'how-to-pronounce-gods-name',
+]
 
+async function main() {
   const urls = [
     `${SITE_URL}/`,
+    `${SITE_URL}/about/`,
+    `${SITE_URL}/contact/`,
+    ...HUB_PAGES.map((slug) => `${SITE_URL}/${slug}/`),
     ...LETTERS.map((l) => `${SITE_URL}/${l}-words/`),
     ...words.map((w) => `${SITE_URL}/${w.slug}/`),
   ]
@@ -35,7 +48,6 @@ async function main() {
 
   if (res.ok || res.status === 202) {
     console.log(`✓ IndexNow accepted ${urls.length} URLs (status ${res.status})`)
-    console.log('  Google, Bing, and Yandex will crawl these shortly.')
   } else {
     const text = await res.text()
     console.error(`✗ IndexNow returned ${res.status}: ${text}`)

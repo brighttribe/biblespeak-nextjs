@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import SearchBar from '@/components/SearchBar'
 
 export const metadata: Metadata = {
-  title: 'How to Pronounce Bible Names & Words | BibleSpeak.org',
+  title: 'How to Pronounce Bible Names & Words',
   description:
     'Learn how to correctly pronounce Bible words, names, and places. Audio pronunciation guides for 858 biblical terms.',
 }
@@ -26,8 +26,63 @@ const CHALLENGE_WORDS = [
 ]
 
 export default function HomePage() {
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://biblespeak.org').trim()
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${siteUrl}/#website`,
+        name: 'BibleSpeak.org',
+        url: siteUrl,
+        description: 'Audio pronunciation guides for 858 biblical words, names, and places.',
+        inLanguage: 'en-US',
+      },
+      {
+        '@type': 'Organization',
+        '@id': `${siteUrl}/#organization`,
+        name: 'BibleSpeak.org',
+        url: siteUrl,
+        description: 'The most comprehensive Bible word pronunciation resource on the web — audio guides, phonetic spelling, and biblical context for 858 biblical words and names.',
+        logo: {
+          '@type': 'ImageObject',
+          url: `${siteUrl}/bible-speak.png`,
+        },
+        contactPoint: {
+          '@type': 'ContactPoint',
+          contactType: 'customer support',
+          email: 'hello@biblespeak.org',
+        },
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${siteUrl}/`,
+        url: `${siteUrl}/`,
+        name: 'How to Pronounce Bible Names & Words | BibleSpeak.org',
+        description: 'Audio pronunciation guides for 858 biblical words, names, and places — with phonetic spelling, meaning, and historical context.',
+        isPartOf: { '@id': `${siteUrl}/#website` },
+        publisher: { '@id': `${siteUrl}/#organization` },
+        inLanguage: 'en-US',
+      },
+      {
+        '@type': 'ItemList',
+        name: 'Hard-to-Pronounce Bible Words',
+        description: 'A selection of commonly mispronounced biblical names and words with audio pronunciation guides.',
+        numberOfItems: CHALLENGE_WORDS.length,
+        itemListElement: CHALLENGE_WORDS.map((word, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: word.title,
+          url: `${siteUrl}/${word.slug}/`,
+        })),
+      },
+    ],
+  }
+
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
       {/* ── Hero ── */}
       <section className="relative bg-navy overflow-hidden text-white">
@@ -99,6 +154,41 @@ export default function HomePage() {
                 className="px-5 py-2.5 bg-white border border-indigo-200 rounded-xl text-slate-700 font-medium hover:bg-brand hover:text-white hover:border-brand hover:shadow-md hover:-translate-y-0.5 transition-all text-sm shadow-sm"
               >
                 {word.title}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Pronunciation Guides ── */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-bold text-slate-900 mb-2">Pronunciation Guides</h2>
+            <p className="text-slate-500 text-sm">In-depth guides for every category of Bible names and words</p>
+          </div>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+            {[
+              { href: '/how-to-pronounce-gods-name/', label: "How to Pronounce God's Name", desc: 'Yahweh, Jehovah, Elohim, Adonai' },
+              { href: '/hardest-bible-words-to-pronounce/', label: 'Hardest Bible Words', desc: 'Nebuchadnezzar, Zerubbabel & more' },
+              { href: '/acts-2-pronunciation/', label: 'Acts 2 — Pentecost Words', desc: 'Every place name in Acts 2:9-11' },
+              { href: '/old-testament-names-pronunciation/', label: 'Old Testament Names', desc: 'Abraham through Zechariah' },
+              { href: '/new-testament-names-pronunciation/', label: 'New Testament Names', desc: 'Apostles, disciples & key figures' },
+              { href: '/bible-prophets-pronunciation/', label: 'The Prophets', desc: 'All major & minor prophets' },
+              { href: '/apostles-names-pronunciation/', label: 'The Apostles', desc: "All 12 apostles' names + Paul" },
+              { href: '/women-of-the-bible-pronunciation/', label: 'Women of the Bible', desc: 'Ruth, Esther, Mary, Deborah & more' },
+              { href: '/bible-places-pronunciation/', label: 'Bible Places & Cities', desc: 'Jerusalem, Ephesus, Galilee & more' },
+              { href: '/how-to-pronounce-bible-names/', label: 'How to Pronounce Bible Names', desc: 'Start here — phonetics explained' },
+              { href: '/biblical-names-pronunciation/', label: 'Biblical Names Guide', desc: 'Phonetic system & most-mispronounced' },
+              { href: '/bible-pronunciation-audio/', label: 'Audio Pronunciation Guide', desc: 'Free recordings — no signup needed' },
+            ].map((guide) => (
+              <Link
+                key={guide.href}
+                href={guide.href}
+                className="group flex flex-col p-4 bg-white border border-slate-200 rounded-xl hover:border-brand/40 hover:shadow-md hover:-translate-y-0.5 transition-all"
+              >
+                <span className="text-sm font-semibold text-slate-800 group-hover:text-brand transition-colors mb-1">{guide.label}</span>
+                <span className="text-xs text-slate-400">{guide.desc}</span>
               </Link>
             ))}
           </div>
