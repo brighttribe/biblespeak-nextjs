@@ -27,6 +27,8 @@ const DB_SLUGS = [
   'messiah-pronunciation',
   'jesus-pronunciation',
   'holy-spirit-pronunciation',
+  'yahweh-shalom-pronunciation',
+  'yahweh-yireh-pronunciation',
 ]
 
 export default function HowToPronounceGodsNamePage() {
@@ -144,8 +146,12 @@ export default function HowToPronounceGodsNamePage() {
       <section className="bg-white py-12 px-4">
         <div className="max-w-3xl mx-auto">
 
+          <p className="text-slate-600 leading-relaxed mb-6">
+            If you&rsquo;ve ever wondered how to pronounce God&rsquo;s name — whether that&rsquo;s Yahweh, Jehovah, Elohim, or Adonai — you&rsquo;re not alone. These names appear throughout the Bible but rarely come with pronunciation guides. This page covers every major name and title of God in Scripture, with phonetic spellings and any available audio.
+          </p>
+
           <h2 className="text-2xl font-bold text-slate-800 mt-2 mb-3">
-            The Unpronounceable Name — YHWH
+            How to Pronounce YHWH — The Unpronounceable Name
           </h2>
           <p className="text-slate-600 leading-relaxed mb-6">
             The most sacred name in the Bible consists of four Hebrew consonants: Yod, He, Vav, He
@@ -158,24 +164,27 @@ export default function HowToPronounceGodsNamePage() {
           </p>
 
           <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-3">
-            Yahweh vs. Jehovah — What&rsquo;s the Difference?
+            How to Pronounce Yahweh vs. Jehovah
           </h2>
           <p className="text-slate-600 leading-relaxed mb-6">
+            To pronounce Yahweh: say <strong>YAH-way</strong> — two syllables, stress on the first.
+            To pronounce Jehovah: say <strong>jih-HOH-vuh</strong> — three syllables, stress on the second.
+            The difference matters because they come from completely different historical traditions.
             In the 6th&ndash;10th centuries AD, Jewish scholars called Masoretes added vowel
             markings (nikud) to the Hebrew text to preserve pronunciation. When they reached YHWH,
             they wrote the vowels of Adonai as a reading cue — a reminder to say Adonai instead.
             Medieval Christian scholars, unfamiliar with this convention, read the vowels as part of
             the name itself, producing the hybrid form &ldquo;Jehovah&rdquo; (YHWH&rsquo;s
-            consonants + Adonai&rsquo;s vowels). Most modern scholars believe &ldquo;Yahweh&rdquo;
-            (YAH-way) is closer to the original pronunciation. &ldquo;Jehovah&rdquo; (jih-HOH-vuh)
-            remains in wide use in traditional Christian contexts and hymns.
+            consonants + Adonai&rsquo;s vowels). Most modern scholars believe Yahweh is closer to
+            the original pronunciation. Jehovah remains in wide use in traditional Christian
+            contexts and hymns.
           </p>
 
           <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-3">
-            The Other Names of God in Scripture
+            How to Pronounce Every Name of God in the Bible
           </h2>
           <p className="text-slate-600 leading-relaxed mb-4">
-            Hebrew Scripture uses multiple names and titles for God, each carrying distinct meaning:
+            Hebrew Scripture uses multiple names and titles for God, each carrying distinct meaning and each with its own pronunciation:
           </p>
           <ul className="list-disc list-inside space-y-2 text-slate-600 text-sm mb-6 pl-2">
             <li>
