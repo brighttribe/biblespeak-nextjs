@@ -1,0 +1,73 @@
+# BibleSpeak.org
+
+> The most comprehensive Bible word pronunciation resource on the web — 858 words with audio, phonetic spelling, and biblical context.
+
+BibleSpeak.org helps pastors, Bible teachers, seminary students, Sunday school leaders, and anyone who studies or preaches Scripture pronounce biblical words correctly. Every entry includes an audio recording, a phonetic spelling breakdown, the word's biblical meaning, and historical context — completely free.
+
+The site is a proud partner of GraceOnlineLibrary.org, a trusted Bible study resource with over 25 years serving Christians online. Pronunciations follow established scholarly and traditional conventions used in seminaries and Bible colleges.
+
+## About
+
+- [About BibleSpeak.org](https://biblespeak.org/about/): Mission, coverage, background, and who uses the site
+- [Contact](https://biblespeak.org/contact/): hello@biblespeak.org — word suggestions, corrections, and general questions welcome
+
+## Coverage
+
+858 biblical words, names, and places across both Testaments, including:
+- Personal names: patriarchs, kings, prophets, apostles, and named figures
+- Places and geography: cities, regions, mountains, rivers, and nations
+- Hebrew and Greek terms: theological words, titles, and transliterated terms
+- Historical context and meaning for each entry
+
+## Browse by Letter
+
+- [A Words](https://biblespeak.org/a-words/)
+- [B Words](https://biblespeak.org/b-words/)
+- [C Words](https://biblespeak.org/c-words/)
+- [D Words](https://biblespeak.org/d-words/)
+- [E Words](https://biblespeak.org/e-words/)
+- [F Words](https://biblespeak.org/f-words/)
+- [G Words](https://biblespeak.org/g-words/)
+- [H Words](https://biblespeak.org/h-words/)
+- [I Words](https://biblespeak.org/i-words/)
+- [J Words](https://biblespeak.org/j-words/)
+- [K Words](https://biblespeak.org/k-words/)
+- [L Words](https://biblespeak.org/l-words/)
+- [M Words](https://biblespeak.org/m-words/)
+- [N Words](https://biblespeak.org/n-words/)
+- [O Words](https://biblespeak.org/o-words/)
+- [P Words](https://biblespeak.org/p-words/)
+- [Q Words](https://biblespeak.org/q-words/)
+- [R Words](https://biblespeak.org/r-words/)
+- [S Words](https://biblespeak.org/s-words/)
+- [T Words](https://biblespeak.org/t-words/)
+- [U Words](https://biblespeak.org/u-words/)
+- [V Words](https://biblespeak.org/v-words/)
+- [W Words](https://biblespeak.org/w-words/)
+- [X Words](https://biblespeak.org/x-words/)
+- [Y Words](https://biblespeak.org/y-words/)
+- [Z Words](https://biblespeak.org/z-words/)
+
+## Word Pages
+
+Individual word pages follow the pattern: `https://biblespeak.org/[word-slug]-pronunciation/`
+
+Each page includes:
+- Phonetic pronunciation (e.g., "zeh-RUB-uh-bel")
+- Audio recording (MP3)
+- Biblical meaning
+- Historical and scriptural context
+- Related words from the same letter
+
+Notable examples:
+- [Zerubbabel](https://biblespeak.org/zerubbabel-pronunciation/)
+- [Mephibosheth](https://biblespeak.org/mephibosheth-pronunciation/)
+- [Jehoshaphat](https://biblespeak.org/jehoshaphat-pronunciation/)
+- [Theophilus](https://biblespeak.org/theophilus-pronunciation/)
+- [Methuselah](https://biblespeak.org/methuselah-pronunciation/)
+
+A full index of all 858 words is available at: https://biblespeak.org/sitemap.xml
+
+## Sitemap
+
+- https://biblespeak.org/sitemap.xml

@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { createSupabaseClient, audioUrl } from '@/lib/supabase'
+import { audioUrl } from '@/lib/supabase'
+import { getAllWordSlugs, getWordBySlug, getWordsByLetter, getAllWords } from '@/lib/data'
 import AudioPlayer from '@/components/AudioPlayer'
 import AdUnit from '@/components/AdUnit'
 import BackToTop from '@/components/BackToTop'
@@ -9,9 +10,7 @@ import Link from 'next/link'
 const LETTERS = 'abcdefghijklmnopqrstuvwxyz'.split('')
 
 export async function generateStaticParams() {
-  const supabase = createSupabaseClient()
-  const { data } = await supabase.from('words').select('slug')
-  const wordSlugs = (data ?? []).map((w) => ({ slug: w.slug }))
+  const wordSlugs = getAllWordSlugs().map((slug) => ({ slug }))
   const letterSlugs = LETTERS.map((l) => ({ slug: `${l}-words` }))
   return [...wordSlugs, ...letterSlugs]
 }
@@ -23,11 +22,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://biblespeak.org'
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://biblespeak.org').trim()
   const letterMatch = slug.match(/^([a-z])-words$/)
   if (letterMatch) {
     const letter = letterMatch[1]
-    const title = `Bible Words Starting with ${letter.toUpperCase()} | BibleSpeak.org`
+    const title = `Bible Words Starting with ${letter.toUpperCase()}`
     const description = `Pronunciation guides for all Bible words and names starting with the letter ${letter.toUpperCase()}.`
     return {
       title,
@@ -37,16 +36,11 @@ export async function generateMetadata({
     }
   }
 
-  const supabase = createSupabaseClient()
-  const { data: word } = await supabase
-    .from('words')
-    .select('title, pronunciation')
-    .eq('slug', slug)
-    .single()
-
+  const word = getWordBySlug(slug)
   if (!word) return {}
 
-  const title = `${word.title} Pronunciation — How to Say It | BibleSpeak.org`
+  const full = `How to Pronounce ${word.title} Pronunciation`
+  const title = full.length <= 43 ? full : `${word.title} Pronunciation`
   const description = `Learn the correct pronunciation of ${word.title}${word.pronunciation ? ` (${word.pronunciation})` : ''} with an audio guide, phonetic spelling, and biblical context.`
   return {
     title,
@@ -70,24 +64,24 @@ export default async function SlugPage({
 async function LetterPage({ letter }: { letter: string }) {
   if (!LETTERS.includes(letter)) notFound()
 
-  const supabase = createSupabaseClient()
-  const { data: words } = await supabase
-    .from('words')
-    .select('title, slug, pronunciation')
-    .eq('letter', letter)
-    .order('title')
+  const words = getWordsByLetter(letter)
 
-  const count = (words ?? []).length
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://biblespeak.org'
+  const count = words.length
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://biblespeak.org').trim()
 
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'CollectionPage',
+        '@id': `${siteUrl}/${letter}-words/`,
         headline: `Bible Words Starting with ${letter.toUpperCase()}`,
+        name: `Bible Words Starting with ${letter.toUpperCase()} | BibleSpeak.org`,
         description: `Pronunciation guides for all Bible words and names starting with the letter ${letter.toUpperCase()}. ${count} words with audio and phonetic spelling.`,
         url: `${siteUrl}/${letter}-words/`,
+        inLanguage: 'en-US',
+        isPartOf: { '@id': `${siteUrl}/#website` },
+        publisher: { '@id': `${siteUrl}/#organization` },
       },
       {
         '@type': 'BreadcrumbList',
@@ -95,6 +89,18 @@ async function LetterPage({ letter }: { letter: string }) {
           { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
           { '@type': 'ListItem', position: 2, name: `${letter.toUpperCase()} Words`, item: `${siteUrl}/${letter}-words/` },
         ],
+      },
+      {
+        '@type': 'ItemList',
+        name: `Bible Words Starting with ${letter.toUpperCase()}`,
+        description: `All ${count} Bible words and names starting with ${letter.toUpperCase()} — with audio pronunciation, phonetic spelling, and biblical meaning.`,
+        numberOfItems: count,
+        itemListElement: words.map((word, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: word.title,
+          url: `${siteUrl}/${word.slug}/`,
+        })),
       },
     ],
   }
@@ -148,7 +154,7 @@ async function LetterPage({ letter }: { letter: string }) {
             <p className="px-6 py-12 text-slate-400 text-center">No words found for this letter.</p>
           ) : (
             <ul className="divide-y divide-slate-100">
-              {(words ?? []).map((word, i) => (
+              {words.map((word, i) => (
                 <li key={word.slug} className={i % 2 === 0 ? 'bg-white' : 'bg-slate-50/60'}>
                   <Link
                     href={`/${word.slug}/`}
@@ -175,19 +181,14 @@ async function LetterPage({ letter }: { letter: string }) {
 }
 
 async function WordPage({ slug }: { slug: string }) {
-  const supabase = createSupabaseClient()
-  const [{ data: word }, { data: related }] = await Promise.all([
-    supabase.from('words').select('*').eq('slug', slug).single(),
-    supabase.from('words').select('title, slug, pronunciation').order('title'),
-  ])
-
+  const word = getWordBySlug(slug)
   if (!word) notFound()
 
-  const relatedWords = (related ?? [])
-    .filter((w) => w.slug !== slug && w.slug.charAt(0) === word.letter)
+  const relatedWords = getAllWords()
+    .filter((w) => w.slug !== slug && w.letter === word.letter)
     .slice(0, 10)
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://biblespeak.org'
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://biblespeak.org').trim()
   const pageUrl = `${siteUrl}/${word.slug}/`
 
   const syllables = word.pronunciation ? word.pronunciation.split('-').join(' · ') : null
@@ -233,14 +234,32 @@ async function WordPage({ slug }: { slug: string }) {
     '@graph': [
       {
         '@type': 'Article',
+        '@id': `${pageUrl}#article`,
         headline: `How to Pronounce ${word.title}`,
         description: `Learn the correct pronunciation of the Bible word ${word.title}${word.pronunciation ? ` (${word.pronunciation})` : ''}. Includes audio guide, phonetic spelling${word.meaning ? `, and meaning: ${word.meaning}` : ''}.`,
         url: pageUrl,
-        publisher: {
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': pageUrl,
+        },
+        author: {
           '@type': 'Organization',
+          '@id': `${siteUrl}/#organization`,
           name: 'BibleSpeak.org',
           url: siteUrl,
         },
+        publisher: {
+          '@type': 'Organization',
+          '@id': `${siteUrl}/#organization`,
+          name: 'BibleSpeak.org',
+          url: siteUrl,
+          logo: {
+            '@type': 'ImageObject',
+            url: `${siteUrl}/bible-speak.png`,
+          },
+        },
+        inLanguage: 'en-US',
+        isPartOf: { '@id': `${siteUrl}/#website` },
         speakable: {
           '@type': 'SpeakableSpecification',
           cssSelector: ['h1', '.pronunciation-speakable'],
@@ -252,6 +271,14 @@ async function WordPage({ slug }: { slug: string }) {
             description: `Audio pronunciation of the Bible word or name ${word.title}`,
             contentUrl: audioUrl(word.audio_file),
             encodingFormat: 'audio/mpeg',
+            inLanguage: 'en-US',
+          },
+        }),
+        ...(word.meaning && {
+          about: {
+            '@type': 'Thing',
+            name: word.title,
+            description: word.meaning,
           },
         }),
       },

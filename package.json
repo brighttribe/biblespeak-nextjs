@@ -17,9 +17,21 @@
     "@tailwindcss/typography": "^0.5.19",
     "dotenv": "^17.4.2",
     "next": "16.2.4",
+    "posthog-js": "^1.390.2",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "xml2js": "^0.6.2"
+  },
+  "browserslist": {
+    "production": [
+      "chrome >= 87",
+      "firefox >= 78",
+      "safari >= 14",
+      "edge >= 88"
+    ],
+    "development": [
+      "last 1 chrome version"
+    ]
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -28,6 +40,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/xml2js": "^0.4.14",
+    "esbuild": "^0.28.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
     "pg": "^8.20.0",

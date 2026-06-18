@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
-import { createSupabaseClient } from '@/lib/supabase'
 
 type Result = { title: string; slug: string; pronunciation: string | null }
 
@@ -20,13 +19,8 @@ export default function SearchBar({ large = false }: { large?: boolean }) {
       return
     }
     const timer = setTimeout(async () => {
-      const supabase = createSupabaseClient()
-      const { data } = await supabase
-        .from('words')
-        .select('title, slug, pronunciation')
-        .ilike('title', `${query.trim()}%`)
-        .order('title')
-        .limit(8)
+      const res = await fetch(`/api/search?q=${encodeURIComponent(query.trim())}`)
+      const data: Result[] = await res.json()
       setResults(data ?? [])
       setOpen(true)
     }, 180)

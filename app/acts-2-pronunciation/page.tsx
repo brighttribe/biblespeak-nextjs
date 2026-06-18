@@ -87,13 +87,6 @@ export default function Acts2PronunciationPage() {
         <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-brand-dark/30 rounded-full blur-[100px] translate-y-1/4" />
 
         <div className="relative max-w-3xl mx-auto px-4 py-16">
-          {/* Breadcrumb */}
-          <nav className="text-sm text-white/50 mb-8">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span className="mx-2">›</span>
-            <span className="text-white/80">Acts 2 Pronunciation</span>
-          </nav>
-
           <h1 className="text-4xl sm:text-5xl font-bold mb-5 tracking-tight leading-[1.1]">
             How to Pronounce the Words in <span className="text-brand">Acts 2</span>
           </h1>
@@ -103,6 +96,17 @@ export default function Acts2PronunciationPage() {
         </div>
       </section>
 
+      {/* Breadcrumb */}
+      <div className="bg-white border-b border-slate-100">
+        <div className="max-w-3xl mx-auto px-4 py-3">
+          <nav className="text-sm text-slate-400">
+            <Link href="/" className="hover:text-brand transition-colors">Home</Link>
+            <span className="mx-2">›</span>
+            <span className="text-slate-600">Acts 2 Pronunciation</span>
+          </nav>
+        </div>
+      </div>
+
       {/* Content */}
       <section className="bg-white py-12 px-4">
         <div className="max-w-3xl mx-auto">
@@ -111,7 +115,7 @@ export default function Acts2PronunciationPage() {
             Acts 2 is one of the most geographically dense passages in the New Testament. In a handful of verses, Luke lists fifteen nations and regions whose people heard the disciples speaking in their own languages on the day of Pentecost. These names carry the weight of the miracle itself — and they&rsquo;re among the hardest words for modern readers to say aloud with confidence.
           </p>
 
-          <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-3">The Nations of Pentecost</h2>
+          <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-3">The Nations of Pentecost — All 15 Names Pronounced</h2>
           <p className="text-slate-600 leading-relaxed mb-6">
             Acts 2:5-11 lists fifteen nations and regions whose people heard the disciples speaking in their own languages on the day of Pentecost. These geographic names reflect the full sweep of the ancient Mediterranean world — from Mesopotamia in the east to Rome in the west, from Pontus in the north to Arabia in the south. For anyone reading Acts aloud, getting these names right matters enormously: they carry the weight of the miracle itself.
           </p>
@@ -121,7 +125,7 @@ export default function Acts2PronunciationPage() {
             These are Hellenized versions of Hebrew, Persian, Latin, and Aramaic place names, rendered first into Greek and then into English. Phrygia (FRIJ-ee-uh) sounds nothing like it&rsquo;s spelled. Elamites (EE-luh-myts) catches first-time readers off guard. Pamphylia (pam-FIL-ee-uh) has five syllables and an unusual stress pattern. This guide exists precisely because these words appear in public readings and demand confident pronunciation.
           </p>
 
-          <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-3">Every Place Name in Acts 2:9-11</h2>
+          <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-3">How to Pronounce Every Place Name in Acts 2:9-11</h2>
           <p className="text-slate-600 leading-relaxed mb-6">
             The list below includes every nation, region, and city mentioned in the Pentecost account, along with related locations Paul visited on his missionary journeys through the same regions.
           </p>

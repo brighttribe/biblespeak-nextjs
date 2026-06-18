@@ -102,13 +102,6 @@ export default function HardestBibleWordsPronunciationPage() {
         <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-brand-dark/30 rounded-full blur-[100px] translate-y-1/4" />
 
         <div className="relative max-w-3xl mx-auto px-4 py-16">
-          {/* Breadcrumb */}
-          <nav className="text-sm text-white/50 mb-8">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span className="mx-2">›</span>
-            <span className="text-white/80">Hardest Bible Words to Pronounce</span>
-          </nav>
-
           <h1 className="text-4xl sm:text-5xl font-bold mb-5 tracking-tight leading-[1.1]">
             The Hardest Bible Words <span className="text-brand">to Pronounce</span>
           </h1>
@@ -117,6 +110,17 @@ export default function HardestBibleWordsPronunciationPage() {
           </p>
         </div>
       </section>
+
+      {/* Breadcrumb */}
+      <div className="bg-white border-b border-slate-100">
+        <div className="max-w-3xl mx-auto px-4 py-3">
+          <nav className="text-sm text-slate-400">
+            <Link href="/" className="hover:text-brand transition-colors">Home</Link>
+            <span className="mx-2">›</span>
+            <span className="text-slate-600">Hardest Bible Words to Pronounce</span>
+          </nav>
+        </div>
+      </div>
 
       {/* Content */}
       <section className="bg-white py-12 px-4">
@@ -131,7 +135,7 @@ export default function HardestBibleWordsPronunciationPage() {
             The Bible was composed in Hebrew, Aramaic, and Greek — three languages with phonetic systems radically different from English. When scholars translated these texts, they often preserved the original language&rsquo;s structure in the spelling, producing words that defy English reading habits. Nebuchadnezzar (neb-uh-kud-NEZ-er) has six syllables. Mephibosheth (meh-FIB-oh-sheth) looks like someone sneezed on the keyboard. Zerubbabel (ze-RUB-uh-bel) is three vowels and a double-B trying to be a name. They&rsquo;re all learnable.
           </p>
 
-          <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-3">A Method for Attacking Hard Words</h2>
+          <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-3">How to Pronounce Hard Bible Words — A 5-Step Method</h2>
           <p className="text-slate-600 leading-relaxed mb-4">
             The system below works on every word on this list:
           </p>

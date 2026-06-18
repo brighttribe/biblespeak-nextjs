@@ -89,13 +89,6 @@ export default function HowToPronounceBibleNamesWithEasePage() {
         <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-brand-dark/30 rounded-full blur-[100px] translate-y-1/4" />
 
         <div className="relative max-w-3xl mx-auto px-4 py-16">
-          {/* Breadcrumb */}
-          <nav className="text-sm text-white/50 mb-8">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span className="mx-2">›</span>
-            <span className="text-white/80">How to Pronounce Bible Names With Ease</span>
-          </nav>
-
           <h1 className="text-4xl sm:text-5xl font-bold mb-5 tracking-tight leading-[1.1]">
             How to Pronounce Bible Names <span className="text-brand">With Ease</span>
           </h1>
@@ -104,6 +97,17 @@ export default function HowToPronounceBibleNamesWithEasePage() {
           </p>
         </div>
       </section>
+
+      {/* Breadcrumb */}
+      <div className="bg-white border-b border-slate-100">
+        <div className="max-w-3xl mx-auto px-4 py-3">
+          <nav className="text-sm text-slate-400">
+            <Link href="/" className="hover:text-brand transition-colors">Home</Link>
+            <span className="mx-2">›</span>
+            <span className="text-slate-600">How to Pronounce Bible Names With Ease</span>
+          </nav>
+        </div>
+      </div>
 
       {/* Content */}
       <section className="bg-white py-12 px-4">
@@ -129,7 +133,7 @@ export default function HowToPronounceBibleNamesWithEasePage() {
             The capitalized syllable in BibleSpeak&rsquo;s phonetic system is always the one that carries the most weight when spoken aloud. The surrounding syllables are typically unstressed — they&rsquo;re said quickly and lightly. Say the capitalized one a bit louder and longer, then let the rest trail naturally. You&rsquo;ll be right nearly every time.
           </p>
 
-          <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-3">25 Names to Start With</h2>
+          <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-3">25 Bible Names to Pronounce — Start Here</h2>
           <p className="text-slate-600 leading-relaxed mb-6">
             These are the names that appear most frequently in Scripture readings, church calendars, and Bible study curricula. They&rsquo;re also the names most likely to be read aloud in public — which makes getting them right worth the five minutes it takes to practice.
           </p>

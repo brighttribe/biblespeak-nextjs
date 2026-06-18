@@ -4,7 +4,7 @@ import path from 'path'
 import dotenv from 'dotenv'
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') })
 
-const AUDIO_DIR = '/Users/briandempsey/Desktop/biblespeak/public/wp-content/uploads'
+const AUDIO_DIR = '/Users/Shared/Previously Relocated Items/Security/Backups/BibleSpeak/BibleSpeak MP3s'
 const BUCKET = 'audio'
 
 async function main() {
@@ -12,6 +12,13 @@ async function main() {
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.SUPABASE_SERVICE_ROLE_KEY!
   )
+
+  const { error: bucketError } = await supabase.storage.createBucket(BUCKET, { public: true })
+  if (bucketError && !bucketError.message.includes('already exists')) {
+    console.error('Failed to create bucket:', bucketError.message)
+    process.exit(1)
+  }
+  console.log('Bucket ready.')
 
   const files = fs.readdirSync(AUDIO_DIR).filter((f) => f.endsWith('.mp3'))
   console.log(`Found ${files.length} MP3 files`)

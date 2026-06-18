@@ -45,19 +45,25 @@ export default async function OldTestamentNamesPronunciation() {
 
       <section className="bg-[#0f172a] text-white py-12">
         <div className="max-w-4xl mx-auto px-4">
-          <nav className="text-sm text-slate-400 mb-4">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span className="mx-2">›</span>
-            <span className="text-slate-300">Old Testament Names Pronunciation</span>
-          </nav>
           <h1 className="text-4xl font-bold mb-4">Old Testament Names Pronunciation</h1>
           <p className="text-slate-300 text-lg max-w-2xl">Audio recordings and phonetic spellings for major Old Testament figures — patriarchs, judges, kings, and prophets.</p>
         </div>
       </section>
 
+      {/* Breadcrumb */}
+      <div className="bg-white border-b border-slate-100">
+        <div className="max-w-3xl mx-auto px-4 py-3">
+          <nav className="text-sm text-slate-400">
+            <Link href="/" className="hover:text-brand transition-colors">Home</Link>
+            <span className="mx-2">›</span>
+            <span className="text-slate-600">Old Testament Names Pronunciation</span>
+          </nav>
+        </div>
+      </div>
+
       <main className="max-w-4xl mx-auto px-4 py-10">
         <div className="prose prose-slate max-w-none mb-10">
-          <h2>The Hebrew Roots of Old Testament Names</h2>
+          <h2>How to Pronounce Old Testament Names — Hebrew Roots Explained</h2>
           <p>Old Testament names were originally Hebrew, and Hebrew uses sounds that don't exist in English. The guttural 'ch' in Habakkuk, the emphatic consonants, the vowel patterns — all of these were simplified during the Greek Septuagint and Latin Vulgate translations before reaching English. The name you encounter in your Bible may be three translations removed from what the person was actually called. For most readers, the Old Testament is a landscape of names they've seen for years but never quite trusted themselves to say aloud. This guide removes that uncertainty by giving you both a phonetic spelling and an audio recording for every major figure.</p>
           <p>The Masoretes &mdash; Jewish scribes working between the 6th and 10th centuries AD &mdash; added vowel marks (nikud) to the Hebrew consonantal text to preserve pronunciation traditions. This system is responsible for the phonetic backbone of most OT name pronunciations we use today. Before the Masoretes, readers relied entirely on oral tradition to know how words sounded.</p>
 

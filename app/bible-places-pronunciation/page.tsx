@@ -98,13 +98,6 @@ export default function BiblePlacesPronunciationPage() {
         <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-brand-dark/30 rounded-full blur-[100px] translate-y-1/4" />
 
         <div className="relative max-w-3xl mx-auto px-4 py-16">
-          {/* Breadcrumb */}
-          <nav className="text-sm text-white/50 mb-8">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span className="mx-2">›</span>
-            <span className="text-white/80">Bible Places Pronunciation</span>
-          </nav>
-
           <h1 className="text-4xl sm:text-5xl font-bold mb-5 tracking-tight leading-[1.1]">
             Bible Places <span className="text-brand">Pronunciation Guide</span>
           </h1>
@@ -113,6 +106,17 @@ export default function BiblePlacesPronunciationPage() {
           </p>
         </div>
       </section>
+
+      {/* Breadcrumb */}
+      <div className="bg-white border-b border-slate-100">
+        <div className="max-w-3xl mx-auto px-4 py-3">
+          <nav className="text-sm text-slate-400">
+            <Link href="/" className="hover:text-brand transition-colors">Home</Link>
+            <span className="mx-2">›</span>
+            <span className="text-slate-600">Bible Places Pronunciation</span>
+          </nav>
+        </div>
+      </div>
 
       {/* Content */}
       <section className="bg-white py-12 px-4">
@@ -135,7 +139,7 @@ export default function BiblePlacesPronunciationPage() {
             Place names in the Old Testament sometimes shift in the New Testament due to changes in political control or population. Aram in the Old Testament overlaps with Syria and parts of modern Iraq. Caesarea Philippi — often distinguished from Caesarea on the coast — was a city at the foot of Mount Hermon that appears in Peter&rsquo;s famous confession. The distinctions matter, and this guide notes them where they arise.
           </p>
 
-          <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-3">From Bethlehem to Thessalonica</h2>
+          <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-3">How to Pronounce Bible Places — From Bethlehem to Thessalonica</h2>
           <p className="text-slate-600 leading-relaxed mb-6">
             The places below span the Old and New Testaments: the cities where Jesus was born, taught, and died; the regions Paul traveled through on his missionary journeys; and the ancient kingdoms whose names echo through prophecy and history. Each entry includes a phonetic spelling and an audio recording you can play directly in your browser.
           </p>

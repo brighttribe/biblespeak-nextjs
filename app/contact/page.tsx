@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Contact | BibleSpeak.org',
+  title: 'Contact',
   description: 'Get in touch with the BibleSpeak.org team.',
   openGraph: {
     title: 'Contact | BibleSpeak.org',
@@ -11,8 +11,50 @@ export const metadata: Metadata = {
 }
 
 export default function ContactPage() {
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://biblespeak.org').trim()
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'ContactPage',
+        '@id': `${siteUrl}/contact/`,
+        name: 'Contact BibleSpeak.org',
+        url: `${siteUrl}/contact/`,
+        description: 'Get in touch with the BibleSpeak.org team with questions, word suggestions, or pronunciation corrections.',
+        inLanguage: 'en-US',
+        isPartOf: { '@id': `${siteUrl}/#website` },
+        publisher: { '@id': `${siteUrl}/#organization` },
+      },
+      {
+        '@type': 'Organization',
+        '@id': `${siteUrl}/#organization`,
+        name: 'BibleSpeak.org',
+        url: siteUrl,
+        logo: {
+          '@type': 'ImageObject',
+          url: `${siteUrl}/bible-speak.png`,
+        },
+        contactPoint: {
+          '@type': 'ContactPoint',
+          contactType: 'customer support',
+          email: 'hello@biblespeak.org',
+          availableLanguage: 'English',
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+          { '@type': 'ListItem', position: 2, name: 'Contact', item: `${siteUrl}/contact/` },
+        ],
+      },
+    ],
+  }
+
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       {/* Hero */}
       <div className="relative bg-navy overflow-hidden text-white">
         <div className="grid-pattern absolute inset-0" />

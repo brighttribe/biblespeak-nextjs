@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'About BibleSpeak.org | Bible Word Pronunciation Guide',
+  title: 'About | Bible Word Pronunciation Guide',
   description: 'BibleSpeak.org is the most comprehensive Bible word pronunciation resource on the web — audio guides, phonetic spelling, and biblical context for 858 words and names.',
   openGraph: {
     title: 'About BibleSpeak.org | Bible Word Pronunciation Guide',
@@ -18,20 +18,52 @@ const STATS = [
 ]
 
 export default function AboutPage() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://biblespeak.org'
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://biblespeak.org').trim()
 
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'AboutPage',
-    name: 'About BibleSpeak.org',
-    description: 'BibleSpeak.org is the most comprehensive Bible word pronunciation resource on the web.',
-    url: `${siteUrl}/about/`,
-    publisher: {
-      '@type': 'Organization',
-      name: 'BibleSpeak.org',
-      url: siteUrl,
-      description: 'Audio pronunciation guides for biblical words, names, and places.',
-    },
+    '@graph': [
+      {
+        '@type': 'AboutPage',
+        '@id': `${siteUrl}/about/`,
+        name: 'About BibleSpeak.org',
+        description: 'BibleSpeak.org is the most comprehensive Bible word pronunciation resource on the web — audio guides, phonetic spelling, and biblical context for 858 biblical words and names.',
+        url: `${siteUrl}/about/`,
+        inLanguage: 'en-US',
+        isPartOf: { '@id': `${siteUrl}/#website` },
+        publisher: { '@id': `${siteUrl}/#organization` },
+      },
+      {
+        '@type': 'Organization',
+        '@id': `${siteUrl}/#organization`,
+        name: 'BibleSpeak.org',
+        url: siteUrl,
+        description: 'The most comprehensive Bible word pronunciation resource on the web — audio guides, phonetic spelling, and biblical context for 858 biblical words and names.',
+        logo: {
+          '@type': 'ImageObject',
+          url: `${siteUrl}/bible-speak.png`,
+        },
+        contactPoint: {
+          '@type': 'ContactPoint',
+          contactType: 'customer support',
+          email: 'hello@biblespeak.org',
+        },
+        knowsAbout: [
+          'Bible pronunciation',
+          'Biblical Hebrew',
+          'Biblical Greek',
+          'Scripture study',
+          'Bible names and places',
+        ],
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+          { '@type': 'ListItem', position: 2, name: 'About', item: `${siteUrl}/about/` },
+        ],
+      },
+    ],
   }
 
   return (

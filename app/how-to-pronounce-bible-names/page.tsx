@@ -91,13 +91,6 @@ export default function HowToPronouncebiblenamesPage() {
         <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-brand-dark/30 rounded-full blur-[100px] translate-y-1/4" />
 
         <div className="relative max-w-3xl mx-auto px-4 py-16">
-          {/* Breadcrumb */}
-          <nav className="text-sm text-white/50 mb-8">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span className="mx-2">›</span>
-            <span className="text-white/80">How to Pronounce Bible Names</span>
-          </nav>
-
           <h1 className="text-4xl sm:text-5xl font-bold mb-5 tracking-tight leading-[1.1]">
             How to Pronounce <span className="text-brand">Bible Names</span>
           </h1>
@@ -106,6 +99,17 @@ export default function HowToPronouncebiblenamesPage() {
           </p>
         </div>
       </section>
+
+      {/* Breadcrumb */}
+      <div className="bg-white border-b border-slate-100">
+        <div className="max-w-3xl mx-auto px-4 py-3">
+          <nav className="text-sm text-slate-400">
+            <Link href="/" className="hover:text-brand transition-colors">Home</Link>
+            <span className="mx-2">›</span>
+            <span className="text-slate-600">How to Pronounce Bible Names</span>
+          </nav>
+        </div>
+      </div>
 
       {/* Content */}
       <section className="bg-white py-12 px-4">
@@ -131,7 +135,7 @@ export default function HowToPronouncebiblenamesPage() {
             The phonetic system uses capitalization to indicate the stressed syllable — so &ldquo;THAD-ee-uhs&rdquo; tells you at a glance where the emphasis falls. If you&rsquo;re still unsure after reading the phonetics, click play and hear it spoken aloud. The combination of visual and audio cues means most people get the pronunciation right on their first or second try.
           </p>
 
-          <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-3">Start With These 25 Names</h2>
+          <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-3">25 Bible Names to Pronounce First</h2>
           <p className="text-slate-600 leading-relaxed mb-6">
             This list covers a mix of well-known names and the trickier ones that catch readers off guard — places from Paul&rsquo;s journeys, figures from the prophets, and names from the Gospels that appear in readings year-round.
           </p>

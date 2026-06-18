@@ -6,9 +6,10 @@ import Script from 'next/script'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import SearchBar from '@/components/SearchBar'
 import MobileMenu from '@/components/MobileMenu'
+import PostHogProvider from '@/components/PostHogProvider'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'], display: 'swap' })
 
 export const metadata: Metadata = {
   title: {
@@ -22,11 +23,13 @@ export const metadata: Metadata = {
     siteName: 'BibleSpeak.org',
     title: 'BibleSpeak.org — How to Pronounce Bible Words & Names',
     description: 'Audio pronunciation guides for 858 biblical words and names.',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'BibleSpeak.org' }],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'BibleSpeak.org — How to Pronounce Bible Words & Names',
     description: 'Audio pronunciation guides for 858 biblical words and names.',
+    images: ['/og-image.png'],
   },
 }
 
@@ -34,6 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={inter.className}>
       <body className="bg-slate-50 text-slate-900 antialiased">
+        <PostHogProvider>
 
         <header className="bg-navy sticky top-0 z-40 border-b border-white/10">
           <div className="max-w-5xl mx-auto px-4 h-16 flex items-center gap-4">
@@ -96,6 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
+        </PostHogProvider>
       </body>
       <GoogleAnalytics gaId="G-C4ES3L9CPJ" />
     </html>

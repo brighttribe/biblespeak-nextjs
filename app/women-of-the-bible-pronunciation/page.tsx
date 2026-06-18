@@ -45,25 +45,31 @@ export default async function WomenOfTheBiblePronunciation() {
 
       <section className="bg-[#0f172a] text-white py-12">
         <div className="max-w-4xl mx-auto px-4">
-          <nav className="text-sm text-slate-400 mb-4">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span className="mx-2">›</span>
-            <span className="text-slate-300">Women of the Bible Pronunciation</span>
-          </nav>
           <h1 className="text-4xl font-bold mb-4">Women of the Bible — Name Pronunciation Guide</h1>
           <p className="text-slate-300 text-lg max-w-2xl">Correct pronunciation for every major woman named in Scripture — from Eve to Priscilla, with audio recordings.</p>
         </div>
       </section>
+
+      {/* Breadcrumb */}
+      <div className="bg-white border-b border-slate-100">
+        <div className="max-w-3xl mx-auto px-4 py-3">
+          <nav className="text-sm text-slate-400">
+            <Link href="/" className="hover:text-brand transition-colors">Home</Link>
+            <span className="mx-2">›</span>
+            <span className="text-slate-600">Women of the Bible Pronunciation</span>
+          </nav>
+        </div>
+      </div>
 
       <main className="max-w-4xl mx-auto px-4 py-10">
         <div className="prose prose-slate max-w-none mb-10">
           <h2>Women at the Heart of Scripture</h2>
           <p>From Eve in the garden to Mary at the empty tomb, women appear at every pivotal moment in the biblical narrative. Their names span Hebrew, Aramaic, Greek, and Latin — and many carry meanings that illuminate their roles: Miriam means "bitter" or "beloved," Deborah means "bee," Ruth means "friend" or "companion," and Mary (Miriam in Hebrew) was the most common Jewish name of the first century, carried by at least six different women named in the New Testament alone. Knowing these names and their meanings is essential for any serious Bible reader.</p>
 
-          <h2>Old Testament Women</h2>
+          <h2>How to Pronounce Old Testament Women's Names</h2>
           <p>The women of the Hebrew Scriptures serve as warriors (Deborah), redeemers (Ruth), queens (Esther, Jezebel), mothers of covenant lines (Sarah, Naomi), and prophets (Deborah, Huldah). Their stories span the entire arc of Israelite history — from the creation narrative through the Babylonian exile and return. Many of these names have passed into general English use (Sarah, Ruth, Esther, Miriam) which can create a false sense of familiarity: the English versions may feel obvious, but the Hebrew originals carry different stress and vowel patterns worth knowing.</p>
 
-          <h2>New Testament Women</h2>
+          <h2>How to Pronounce New Testament Women's Names</h2>
           <p>The women around Jesus — Mary Magdalene, Joanna, Salome, Martha, Mary of Bethany — are named with unusual specificity in the Gospels, which scholars consider a mark of historical authenticity. Paul's letters mention Priscilla, Lydia, and other women as church leaders and patrons at a time when such roles were significant. Elizabeth, the mother of John the Baptist, carries a Hebrew name (Elisheba) meaning "my God is an oath" — the same name as the wife of Aaron in the Old Testament. These names deserve to be pronounced correctly, and the audio recordings below ensure they are.</p>
 
           <h2>Why Women&rsquo;s Names Are Underrepresented in Bible Pronunciation Resources</h2>

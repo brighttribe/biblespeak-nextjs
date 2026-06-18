@@ -79,13 +79,6 @@ export default function ApostlesNamesPronunciationPage() {
         <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-brand-dark/30 rounded-full blur-[100px] translate-y-1/4" />
 
         <div className="relative max-w-3xl mx-auto px-4 py-16">
-          {/* Breadcrumb */}
-          <nav className="text-sm text-white/50 mb-8">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span className="mx-2">›</span>
-            <span className="text-white/80">Apostles Names Pronunciation</span>
-          </nav>
-
           <h1 className="text-4xl sm:text-5xl font-bold mb-5 tracking-tight leading-[1.1]">
             The Apostles&rsquo; Names &mdash; <span className="text-brand">Pronunciation Guide</span>
           </h1>
@@ -95,11 +88,22 @@ export default function ApostlesNamesPronunciationPage() {
         </div>
       </section>
 
+      {/* Breadcrumb */}
+      <div className="bg-white border-b border-slate-100">
+        <div className="max-w-3xl mx-auto px-4 py-3">
+          <nav className="text-sm text-slate-400">
+            <Link href="/" className="hover:text-brand transition-colors">Home</Link>
+            <span className="mx-2">›</span>
+            <span className="text-slate-600">Apostles Names Pronunciation</span>
+          </nav>
+        </div>
+      </div>
+
       {/* Content */}
       <section className="bg-white py-12 px-4">
         <div className="max-w-3xl mx-auto">
 
-          <h2 className="text-2xl font-bold text-slate-800 mt-2 mb-3">The Twelve and Their Names</h2>
+          <h2 className="text-2xl font-bold text-slate-800 mt-2 mb-3">How to Pronounce the Twelve Apostles' Names</h2>
           <p className="text-slate-600 leading-relaxed mb-6">
             Jesus called twelve disciples to be his apostles, and their names have echoed through two thousand years of Christian history. Most English speakers know these names from childhood &mdash; but many have only ever read them on a page, never heard them spoken confidently at full speed. Bartholomew (bar-THOL-oh-myoo) is not &ldquo;Barth-uh-loo.&rdquo; Thaddaeus (THAD-ee-uhs) trips readers mid-sentence. Even &ldquo;Thomas&rdquo; carries a nuance: his Aramaic name meant &ldquo;twin,&rdquo; and his Greek name Didymus means exactly the same thing.
           </p>

@@ -45,22 +45,28 @@ export default async function NewTestamentNamesPronunciation() {
 
       <section className="bg-[#0f172a] text-white py-12">
         <div className="max-w-4xl mx-auto px-4">
-          <nav className="text-sm text-slate-400 mb-4">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span className="mx-2">›</span>
-            <span className="text-slate-300">New Testament Names Pronunciation</span>
-          </nav>
           <h1 className="text-4xl font-bold mb-4">New Testament Names Pronunciation</h1>
           <p className="text-slate-300 text-lg max-w-2xl">Audio recordings and phonetic spellings for apostles, disciples, Roman officials, and women of the Gospels and Acts.</p>
         </div>
       </section>
 
+      {/* Breadcrumb */}
+      <div className="bg-white border-b border-slate-100">
+        <div className="max-w-3xl mx-auto px-4 py-3">
+          <nav className="text-sm text-slate-400">
+            <Link href="/" className="hover:text-brand transition-colors">Home</Link>
+            <span className="mx-2">›</span>
+            <span className="text-slate-600">New Testament Names Pronunciation</span>
+          </nav>
+        </div>
+      </div>
+
       <main className="max-w-4xl mx-auto px-4 py-10">
         <div className="prose prose-slate max-w-none mb-10">
-          <h2>Greek Names in a Roman World</h2>
+          <h2>How to Pronounce New Testament Names — Greek in a Roman World</h2>
           <p>The New Testament was written in Koine Greek within the Roman Empire — which means its names are drawn from three cultures simultaneously. Many are Greek forms of older Aramaic or Hebrew originals: Petros (Peter) for the Aramaic Cephas meaning "rock"; Ioannes (John) for Yochanan meaning "God is gracious"; Iakobos (James) for Yaakov (Jacob). Latin names like Felix, Festus, and Titus reflect Roman governance and the citizenship of certain figures. The result is a name pool that has passed through Hebrew, Aramaic, Greek, and Latin before arriving in your English Bible — often with the stress pattern shifted at each stop.</p>
 
-          <h2>The Apostles' Names in Full</h2>
+          <h2>How to Pronounce the Apostles' Names</h2>
           <p>The twelve apostles' names range from common Jewish names (James, John, Simon) to distinctly unusual ones (Thaddaeus, Bartholomew). Most English readers know these names from childhood but have only ever read them silently. Reading silently doesn't prepare you for the moment you're asked to read Luke 6 aloud in church and encounter "Bartholomew" and "Thaddaeus" in the same sentence. Every apostle's name appears below with its phonetic breakdown and audio recording — so you can hear the correct stress pattern before you need it.</p>
 
           <h2>From the Gospels to Revelation</h2>

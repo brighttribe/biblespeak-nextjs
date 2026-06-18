@@ -100,13 +100,6 @@ export default function BiblicalNamesPronunciationPage() {
         <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-brand-dark/30 rounded-full blur-[100px] translate-y-1/4" />
 
         <div className="relative max-w-3xl mx-auto px-4 py-16">
-          {/* Breadcrumb */}
-          <nav className="text-sm text-white/50 mb-8">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span className="mx-2">›</span>
-            <span className="text-white/80">Biblical Names Pronunciation</span>
-          </nav>
-
           <h1 className="text-4xl sm:text-5xl font-bold mb-5 tracking-tight leading-[1.1]">
             Biblical Names <span className="text-brand">Pronunciation Guide</span>
           </h1>
@@ -116,6 +109,17 @@ export default function BiblicalNamesPronunciationPage() {
         </div>
       </section>
 
+      {/* Breadcrumb */}
+      <div className="bg-white border-b border-slate-100">
+        <div className="max-w-3xl mx-auto px-4 py-3">
+          <nav className="text-sm text-slate-400">
+            <Link href="/" className="hover:text-brand transition-colors">Home</Link>
+            <span className="mx-2">›</span>
+            <span className="text-slate-600">Biblical Names Pronunciation</span>
+          </nav>
+        </div>
+      </div>
+
       {/* Content */}
       <section className="bg-white py-12 px-4">
         <div className="max-w-3xl mx-auto">
@@ -124,7 +128,7 @@ export default function BiblicalNamesPronunciationPage() {
             Biblical names carry centuries of history, theology, and narrative weight — but English spelling rarely does them justice. The same name can have been transliterated through Hebrew, Greek, Latin, and then Early Modern English before arriving in the Bible you hold today. Each handoff introduced new spelling conventions that don&rsquo;t match how the name was actually spoken. The result: names that look pronounceable but routinely catch readers off guard.
           </p>
 
-          <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-3">The Challenge of Biblical Names</h2>
+          <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-3">Why Biblical Names Are Hard to Pronounce</h2>
           <p className="text-slate-600 leading-relaxed mb-6">
             Many biblical names come from Hebrew, Aramaic, and Greek originals that don&rsquo;t map cleanly onto English phonics. Silent letters, unexpected stress patterns, and centuries of transliteration produce spellings that routinely mislead English readers. &ldquo;Bartholomew&rdquo; looks like it should stress the first syllable. It doesn&rsquo;t. &ldquo;Nicodemus&rdquo; reads as four equal syllables but the third carries the stress. These patterns are learnable — they just require a guide.
           </p>

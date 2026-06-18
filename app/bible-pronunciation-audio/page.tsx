@@ -91,13 +91,6 @@ export default async function BiblePronunciationAudioPage() {
         <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-brand-dark/30 rounded-full blur-[100px] translate-y-1/4" />
 
         <div className="relative max-w-3xl mx-auto px-4 py-16">
-          {/* Breadcrumb */}
-          <nav className="text-sm text-white/50 mb-8">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span className="mx-2">›</span>
-            <span className="text-white/80">Bible Pronunciation Audio</span>
-          </nav>
-
           <h1 className="text-4xl sm:text-5xl font-bold mb-5 tracking-tight leading-[1.1]">
             Bible Pronunciation <span className="text-brand">Audio Guide</span>
           </h1>
@@ -106,6 +99,17 @@ export default async function BiblePronunciationAudioPage() {
           </p>
         </div>
       </section>
+
+      {/* Breadcrumb */}
+      <div className="bg-white border-b border-slate-100">
+        <div className="max-w-3xl mx-auto px-4 py-3">
+          <nav className="text-sm text-slate-400">
+            <Link href="/" className="hover:text-brand transition-colors">Home</Link>
+            <span className="mx-2">›</span>
+            <span className="text-slate-600">Bible Pronunciation Audio</span>
+          </nav>
+        </div>
+      </div>
 
       {/* Content */}
       <section className="bg-white py-12 px-4">
