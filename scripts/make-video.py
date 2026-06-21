@@ -1,0 +1,450 @@
+#!/usr/bin/env python3
+"""
+Renders long-form (1920x1080) and Short (1080x1920) videos for one BibleSpeak word.
+
+Usage:
+    python3 scripts/make-video.py aaron-pronunciation          # both
+    python3 scripts/make-video.py aaron-pronunciation --long   # long only
+    python3 scripts/make-video.py aaron-pronunciation --short  # short only
+"""
+
+import argparse
+import json
+import os
+import re
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
+
+from PIL import Image, ImageDraw, ImageFont
+
+# ── Constants ────────────────────────────────────────────────────────────────
+BASE = Path("/Users/briandempsey/AI Sites/biblespeak")
+ASSETS = BASE / "assets/video"
+AUDIO_DIR = BASE / "audio-generated"
+WORD_CLIPS_HOPE = BASE / "audio-word-hope"
+WORD_CLIPS_NATHANIEL = BASE / "audio-word-nathaniel"
+
+FONT_BOLD = "/System/Library/Fonts/Supplemental/Georgia Bold.ttf"
+FONT_REG  = "/System/Library/Fonts/Supplemental/Georgia.ttf"
+WHITE     = (255, 255, 255)
+ACCENT    = (99, 102, 241)
+DIM_WHITE = (200, 200, 220)
+LEFT_PAD  = 120
+
+VIDEOS_DIR = BASE / "videos"
+WORDS_JSON = BASE / "data/words.json"
+
+# Static audio durations (seconds)
+INTRO_DUR          = 3.875873
+MIDDLE_BEFORE_DUR  = 1.925397
+MIDDLE_AFTER_BIBLE = 5.036871
+MIDDLE_AFTER_OTHER = 3.736576
+PROPER_BEFORE_DUR  = 1.646780
+PROPER_AFTER_DUR   = 1.368118
+OUTRO_DUR          = 3.504354
+
+GAP = 0.4
+START_GAP = 1.5
+
+# Long-form dimensions
+LONG_W, LONG_H = 1920, 1080
+LONG_MAX_W = 1050
+
+# Short dimensions
+SHORT_W, SHORT_H = 1080, 1920
+
+
+# ── Bible detection ──────────────────────────────────────────────────────────
+def has_scripture(content):
+    return bool(re.search(r'[A-Z][a-z]+ \d+:\d+', re.sub('<[^>]+>', ' ', content)))
+
+
+# ── Audio helpers ─────────────────────────────────────────────────────────────
+def make_silence(duration, out_path):
+    subprocess.run(
+        ['ffmpeg', '-y', '-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=stereo',
+         '-t', str(duration), '-q:a', '2', str(out_path)],
+        check=True, capture_output=True
+    )
+
+
+def concat_audio(paths, out_path):
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as f:
+        for p in paths:
+            f.write(f"file '{p}'\n")
+        list_path = f.name
+    subprocess.run(
+        ['ffmpeg', '-y', '-f', 'concat', '-safe', '0', '-i', list_path,
+         '-c', 'copy', str(out_path)],
+        check=True, capture_output=True
+    )
+    os.unlink(list_path)
+
+
+def audio_duration(path):
+    r = subprocess.run(
+        ['ffprobe', '-v', 'error', '-show_entries', 'format=duration',
+         '-of', 'default=noprint_wrappers=1:nokey=1', str(path)],
+        capture_output=True, text=True
+    )
+    return float(r.stdout.strip())
+
+
+def concat_videos(paths, out_path):
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as f:
+        for p in paths:
+            f.write(f"file '{p}'\n")
+        list_path = f.name
+    subprocess.run(
+        ['ffmpeg', '-y', '-f', 'concat', '-safe', '0', '-i', list_path,
+         '-c', 'copy', str(out_path)],
+        check=True, capture_output=True
+    )
+    os.unlink(list_path)
+
+
+def encode_segment(slide_path, audio_path, out_path):
+    subprocess.run(
+        ['ffmpeg', '-y', '-loop', '1', '-i', str(slide_path), '-i', str(audio_path),
+         '-c:v', 'libx264', '-tune', 'stillimage', '-preset', 'fast',
+         '-g', '1', '-keyint_min', '1',
+         '-c:a', 'aac', '-b:a', '192k', '-pix_fmt', 'yuv420p', '-shortest', str(out_path)],
+        check=True, capture_output=True
+    )
+
+
+def auto_font(draw, text, max_w, font_path, max_size=150, min_size=60):
+    for size in range(max_size, min_size - 1, -2):
+        font = ImageFont.truetype(font_path, size)
+        bbox = draw.textbbox((0, 0), text, font=font)
+        if (bbox[2] - bbox[0]) <= max_w:
+            return font
+    return ImageFont.truetype(font_path, min_size)
+
+
+def wrap_text(draw, text, font, max_w):
+    words = text.split()
+    lines, line = [], []
+    for word in words:
+        test = ' '.join(line + [word])
+        if draw.textbbox((0, 0), test, font=font)[2] <= max_w:
+            line.append(word)
+        else:
+            if line:
+                lines.append(' '.join(line))
+            line = [word]
+    if line:
+        lines.append(' '.join(line))
+    return lines
+
+
+# ── Long-form slide functions ─────────────────────────────────────────────────
+def make_slide_intro(title, pron, out_path):
+    """1920x1080 intro slide — left-aligned."""
+    bg = Image.open(ASSETS / "youtube-bg.png").resize((LONG_W, LONG_H))
+    draw = ImageDraw.Draw(bg)
+
+    label_font = ImageFont.truetype(FONT_REG, 52)
+    title_font = auto_font(draw, title, LONG_MAX_W, FONT_BOLD, 150, 60)
+    pron_font  = ImageFont.truetype(FONT_REG, 60)
+
+    tb = draw.textbbox((0, 0), title, font=title_font)
+    th = tb[3] - tb[1]
+
+    draw.text((LEFT_PAD, LONG_H // 2 - 200), "How to Pronounce", font=label_font, fill=ACCENT)
+    draw.text((LEFT_PAD, LONG_H // 2 - th // 2 - 40), title, font=title_font, fill=WHITE)
+    draw.text((LEFT_PAD, LONG_H // 2 + th // 2 + 20), pron, font=pron_font, fill=DIM_WHITE)
+
+    bg.save(out_path)
+
+
+def make_slide_middle(title, sentence, out_path):
+    """1920x1080 middle slide with title, divider, and wrapped sentence text."""
+    bg = Image.open(ASSETS / "youtube-bg.png").resize((LONG_W, LONG_H))
+    draw = ImageDraw.Draw(bg)
+
+    title_font    = ImageFont.truetype(FONT_BOLD, 100)
+    sentence_font = ImageFont.truetype(FONT_REG, 52)
+
+    # Title
+    title_y = LONG_H // 2 - 250
+    draw.text((LEFT_PAD, title_y), title, font=title_font, fill=WHITE)
+
+    # Accent divider line below title
+    tb = draw.textbbox((0, 0), title, font=title_font)
+    divider_y = title_y + tb[3] + 8
+    draw.rectangle([(LEFT_PAD, divider_y), (LEFT_PAD + 500, divider_y + 5)], fill=ACCENT)
+
+    # Wrapped sentence text
+    lines = wrap_text(draw, sentence, sentence_font, LONG_MAX_W)
+    line_h = draw.textbbox((0, 0), "Ay", font=sentence_font)[3] + 10
+    text_y = divider_y + 30
+    for line in lines:
+        draw.text((LEFT_PAD, text_y), line, font=sentence_font, fill=DIM_WHITE)
+        text_y += line_h
+
+    bg.save(out_path)
+
+
+def make_slide_outro(out_path):
+    """1920x1080 outro slide — centered text."""
+    bg = Image.open(ASSETS / "youtube-bg.png").resize((LONG_W, LONG_H))
+    draw = ImageDraw.Draw(bg)
+
+    site_font  = ImageFont.truetype(FONT_BOLD, 96)
+    more_font  = ImageFont.truetype(FONT_REG, 54)
+    gold       = (255, 215, 80)
+
+    site_text = "BibleSpeak.org"
+    more_text = "More Bible Pronunciations"
+
+    sb = draw.textbbox((0, 0), site_text, font=site_font)
+    sw = sb[2] - sb[0]
+    sh = sb[3] - sb[1]
+
+    mb = draw.textbbox((0, 0), more_text, font=more_font)
+    mw = mb[2] - mb[0]
+
+    draw.text(((LONG_W - sw) // 2, LONG_H // 2 - sh // 2 - 20), site_text, font=site_font, fill=WHITE)
+    draw.text(((LONG_W - mw) // 2, LONG_H // 2 + sh // 2 + 20), more_text, font=more_font, fill=gold)
+
+    bg.save(out_path)
+
+
+# ── Short slide functions ─────────────────────────────────────────────────────
+def make_slide_short_word(title, pron, out_path):
+    """1080x1920 word slide — all text centered horizontally."""
+    bg = Image.open(ASSETS / "shorts-bg.png").resize((SHORT_W, SHORT_H))
+    draw = ImageDraw.Draw(bg)
+
+    max_w = SHORT_W - LEFT_PAD * 2
+
+    label_font = ImageFont.truetype(FONT_REG, 52)
+    title_font = auto_font(draw, title, max_w, FONT_BOLD, 150, 60)
+    pron_font  = ImageFont.truetype(FONT_REG, 60)
+
+    tb = draw.textbbox((0, 0), title, font=title_font)
+    th = tb[3] - tb[1]
+    lb = draw.textbbox((0, 0), "How to Pronounce", font=label_font)
+    pb = draw.textbbox((0, 0), pron, font=pron_font)
+
+    draw.text(
+        ((SHORT_W - (lb[2] - lb[0])) // 2, SHORT_H // 2 - 200),
+        "How to Pronounce", font=label_font, fill=ACCENT
+    )
+    draw.text(
+        ((SHORT_W - (tb[2] - tb[0])) // 2, SHORT_H // 2 - th // 2 - 40),
+        title, font=title_font, fill=WHITE
+    )
+    draw.text(
+        ((SHORT_W - (pb[2] - pb[0])) // 2, SHORT_H // 2 + th // 2 + 20),
+        pron, font=pron_font, fill=DIM_WHITE
+    )
+
+    bg.save(out_path)
+
+
+def make_slide_short_outro(out_path):
+    """1080x1920 outro slide — centered text on shorts background."""
+    bg = Image.open(ASSETS / "shorts-bg.png").resize((SHORT_W, SHORT_H))
+    draw = ImageDraw.Draw(bg)
+
+    site_font = ImageFont.truetype(FONT_BOLD, 96)
+    more_font = ImageFont.truetype(FONT_REG, 54)
+    gold      = (255, 215, 80)
+
+    site_text = "BibleSpeak.org"
+    more_text = "More Bible Pronunciations"
+
+    sb = draw.textbbox((0, 0), site_text, font=site_font)
+    sw = sb[2] - sb[0]
+    sh = sb[3] - sb[1]
+
+    mb = draw.textbbox((0, 0), more_text, font=more_font)
+    mw = mb[2] - mb[0]
+
+    draw.text(((SHORT_W - sw) // 2, SHORT_H // 2 - sh // 2 - 20), site_text, font=site_font, fill=WHITE)
+    draw.text(((SHORT_W - mw) // 2, SHORT_H // 2 + sh // 2 + 20), more_text, font=more_font, fill=gold)
+
+    bg.save(out_path)
+
+
+# ── Long-form video builder ───────────────────────────────────────────────────
+def build_long(word, tmp_dir):
+    slug  = word['slug']
+    title = word['title']
+    pron  = word['pronunciation']
+    content = word.get('content', '')
+
+    pron_audio    = AUDIO_DIR / f"{slug}.mp3"
+    nathaniel_clip = WORD_CLIPS_NATHANIEL / f"{slug}.mp3"
+    hope_clip      = WORD_CLIPS_HOPE / f"{slug}.mp3"
+
+    for p in [pron_audio, nathaniel_clip, hope_clip]:
+        if not p.exists():
+            print(f"  WARNING: missing audio file: {p}")
+
+    bible_word = has_scripture(content)
+
+    # ── Seg 0: intro ──────────────────────────────────────────────────────────
+    print("  [long] Building seg 0 — intro")
+    slide0 = Path(tmp_dir) / "long_slide0.png"
+    make_slide_intro(title, pron, slide0)
+
+    gap0a = Path(tmp_dir) / "gap0a.mp3"
+    gap0b = Path(tmp_dir) / "gap0b.mp3"
+    gap0c = Path(tmp_dir) / "gap0c.mp3"
+    audio0 = Path(tmp_dir) / "long_audio0.mp3"
+    make_silence(START_GAP, gap0a)
+    make_silence(GAP, gap0b)
+    make_silence(GAP, gap0c)
+    concat_audio([gap0a, ASSETS / "intro.mp3", gap0b, pron_audio, gap0c], audio0)
+
+    seg0 = Path(tmp_dir) / "long_seg0.mp4"
+    encode_segment(slide0, audio0, seg0)
+
+    # ── Seg 1: middle ─────────────────────────────────────────────────────────
+    print("  [long] Building seg 1 — middle")
+    if bible_word:
+        sentence = (
+            f"Knowing how to correctly pronounce {title} helps bring scripture to life, "
+            f"grounding it in real history, real people, and the story of the Bible."
+        )
+        after_clip = ASSETS / "middle-after-bible.mp3"
+    else:
+        sentence = (
+            f"Knowing how to correctly pronounce {title} connects you to the world of "
+            f"the Bible and broader Christian tradition."
+        )
+        after_clip = ASSETS / "middle-after-other.mp3"
+
+    slide1 = Path(tmp_dir) / "long_slide1.png"
+    make_slide_middle(title, sentence, slide1)
+
+    gap1a = Path(tmp_dir) / "gap1a.mp3"
+    audio1 = Path(tmp_dir) / "long_audio1.mp3"
+    make_silence(GAP, gap1a)
+    concat_audio([gap1a, ASSETS / "middle-before.mp3", nathaniel_clip, after_clip], audio1)
+
+    seg1 = Path(tmp_dir) / "long_seg1.mp4"
+    encode_segment(slide1, audio1, seg1)
+
+    # ── Seg 2: repeat pronunciation ───────────────────────────────────────────
+    print("  [long] Building seg 2 — repeat pronunciation")
+    slide2 = Path(tmp_dir) / "long_slide2.png"
+    make_slide_intro(title, pron, slide2)  # reuse intro slide
+
+    gap2a = Path(tmp_dir) / "gap2a.mp3"
+    audio2 = Path(tmp_dir) / "long_audio2.mp3"
+    make_silence(GAP, gap2a)
+    concat_audio([gap2a, ASSETS / "proper-before.mp3", hope_clip, ASSETS / "proper-after.mp3"], audio2)
+
+    seg2 = Path(tmp_dir) / "long_seg2.mp4"
+    encode_segment(slide2, audio2, seg2)
+
+    # ── Seg 3: outro ──────────────────────────────────────────────────────────
+    print("  [long] Building seg 3 — outro")
+    slide3 = Path(tmp_dir) / "long_slide3.png"
+    make_slide_outro(slide3)
+
+    gap3a = Path(tmp_dir) / "gap3a.mp3"
+    audio3 = Path(tmp_dir) / "long_audio3.mp3"
+    make_silence(GAP, gap3a)
+    concat_audio([gap3a, ASSETS / "outro.mp3"], audio3)
+
+    seg3 = Path(tmp_dir) / "long_seg3.mp4"
+    encode_segment(slide3, audio3, seg3)
+
+    # ── Concat all segments ───────────────────────────────────────────────────
+    print("  [long] Concatenating segments")
+    out_path = VIDEOS_DIR / f"{slug}-long.mp4"
+    concat_videos([seg0, seg1, seg2, seg3], out_path)
+    print(f"  [long] Done -> {out_path}")
+    return out_path
+
+
+# ── Short video builder ───────────────────────────────────────────────────────
+def build_short(word, tmp_dir):
+    slug  = word['slug']
+    title = word['title']
+    pron  = word['pronunciation']
+
+    pron_audio = AUDIO_DIR / f"{slug}.mp3"
+
+    if not pron_audio.exists():
+        print(f"  WARNING: missing audio file: {pron_audio}")
+
+    # ── Seg 0: word slide ─────────────────────────────────────────────────────
+    print("  [short] Building seg 0 — word slide")
+    slide0 = Path(tmp_dir) / "short_slide0.png"
+    make_slide_short_word(title, pron, slide0)
+
+    gap0a = Path(tmp_dir) / "short_gap0a.mp3"
+    gap0b = Path(tmp_dir) / "short_gap0b.mp3"
+    audio0 = Path(tmp_dir) / "short_audio0.mp3"
+    make_silence(START_GAP, gap0a)
+    make_silence(GAP, gap0b)
+    concat_audio([gap0a, pron_audio, gap0b], audio0)
+
+    seg0 = Path(tmp_dir) / "short_seg0.mp4"
+    encode_segment(slide0, audio0, seg0)
+
+    # ── Seg 1: outro ──────────────────────────────────────────────────────────
+    print("  [short] Building seg 1 — outro")
+    slide1 = Path(tmp_dir) / "short_slide1.png"
+    make_slide_short_outro(slide1)
+
+    gap1a = Path(tmp_dir) / "short_gap1a.mp3"
+    audio1 = Path(tmp_dir) / "short_audio1.mp3"
+    make_silence(GAP, gap1a)
+    concat_audio([gap1a, ASSETS / "outro.mp3"], audio1)
+
+    seg1 = Path(tmp_dir) / "short_seg1.mp4"
+    encode_segment(slide1, audio1, seg1)
+
+    # ── Concat ────────────────────────────────────────────────────────────────
+    print("  [short] Concatenating segments")
+    out_path = VIDEOS_DIR / f"{slug}-short.mp4"
+    concat_videos([seg0, seg1], out_path)
+    print(f"  [short] Done -> {out_path}")
+    return out_path
+
+
+# ── Main ──────────────────────────────────────────────────────────────────────
+def main():
+    parser = argparse.ArgumentParser(description="Render BibleSpeak video(s) for one word.")
+    parser.add_argument("slug", help="Word slug, e.g. aaron-pronunciation")
+    parser.add_argument("--long",  action="store_true", help="Render long-form only")
+    parser.add_argument("--short", action="store_true", help="Render short only")
+    args = parser.parse_args()
+
+    # Default: both
+    do_long  = args.long  or (not args.long and not args.short)
+    do_short = args.short or (not args.long and not args.short)
+
+    # Load word data
+    with open(WORDS_JSON) as f:
+        words = json.load(f)
+
+    word = next((w for w in words if w['slug'] == args.slug), None)
+    if word is None:
+        print(f"ERROR: slug '{args.slug}' not found in words.json")
+        sys.exit(1)
+
+    VIDEOS_DIR.mkdir(parents=True, exist_ok=True)
+
+    print(f"Rendering: {word['title']} ({args.slug})")
+
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        if do_long:
+            build_long(word, tmp_dir)
+        if do_short:
+            build_short(word, tmp_dir)
+
+    print("All done.")
+
+
+if __name__ == "__main__":
+    main()

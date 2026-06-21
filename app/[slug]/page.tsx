@@ -372,6 +372,26 @@ async function WordPage({ slug }: { slug: string }) {
           </div>
         )}
 
+        {word.youtube_id_long && (
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+            <div className="px-6 py-3.5 border-b border-slate-100 bg-slate-50 flex items-center gap-2">
+              <div className="w-1.5 h-4 bg-brand rounded-full" />
+              <h2 className="text-xs font-semibold text-slate-500 uppercase tracking-widest">Video Pronunciation</h2>
+            </div>
+            <div className="p-4">
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  className="absolute inset-0 w-full h-full rounded-lg"
+                  src={`https://www.youtube.com/embed/${word.youtube_id_long}`}
+                  title={`How to Pronounce ${word.title}`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          </div>
+        )}
+
         {word.content && (
           <>
             <AdUnit slot="6127268085" />

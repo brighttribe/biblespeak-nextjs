@@ -89,7 +89,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
             <div className="border-t border-white/10 pt-6 text-xs text-white/30 flex flex-col sm:flex-row justify-between gap-2">
               <span>© {new Date().getFullYear()}{' '}BibleSpeak.org — Audio pronunciation guides for Bible words &amp; names</span>
-              <span>Free to use and supported by advertising.</span>
+              <div className="flex items-center gap-4">
+                <span>Free to use and supported by advertising.</span>
+                <Link href="/privacy-policy/" className="hover:text-white transition-colors">Privacy Policy</Link>
+              </div>
             </div>
           </div>
         </footer>

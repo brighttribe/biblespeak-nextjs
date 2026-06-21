@@ -8,6 +8,8 @@ export type Word = {
   audio_file: string | null
   letter: string | null
   content: string | null
+  youtube_id_long: string | null
+  youtube_id_short: string | null
 }
 
 const words = wordsRaw as Word[]
