@@ -92,6 +92,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div className="flex items-center gap-4">
                 <span>Free to use and supported by advertising.</span>
                 <Link href="/privacy-policy/" className="hover:text-white transition-colors">Privacy Policy</Link>
+                <Link href="/terms/" className="hover:text-white transition-colors">Terms of Service</Link>
               </div>
             </div>
           </div>
