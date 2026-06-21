@@ -84,8 +84,9 @@ export default function PrivacyPage() {
         <p><em>In Short: We may share information in specific situations with specific third parties.</em></p>
         <ul>
           <li><strong>Business Transfers.</strong> We may share or transfer your information in connection with any merger, sale of company assets, or acquisition.</li>
-          <li><strong>Advertising Partners.</strong> We use Google AdSense to display ads. Google may use cookies to serve ads based on your visits to this and other websites.</li>
-          <li><strong>Analytics Providers.</strong> We use Google Analytics to understand how visitors use our site.</li>
+          <li><strong>Advertising Partners.</strong> We use Google AdSense to display ads. Google may use cookies to serve ads based on your visits to this and other websites. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google&apos;s Privacy Policy</a>.</li>
+          <li><strong>Analytics Providers.</strong> We use Google Analytics to understand how visitors use our site. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google&apos;s Privacy Policy</a>.</li>
+          <li><strong>YouTube.</strong> This Site embeds video content from YouTube (a Google service). When you view embedded videos, YouTube may collect data about your interaction. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google&apos;s Privacy Policy</a> and <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener noreferrer">YouTube&apos;s Terms of Service</a>.</li>
         </ul>
 
         <h2>5. Do We Use Cookies and Other Tracking Technologies?</h2>
@@ -125,7 +126,9 @@ export default function PrivacyPage() {
         </address>
 
         <h2>14. How Can You Review, Update, or Delete the Data We Collect From You?</h2>
-        <p>Based on the applicable laws of your country or state of residence, you may have the right to request access to the personal information we collect from you, correct inaccuracies, or delete your personal information. To submit a request, please email us at <a href="mailto:hello@brighttribe.com">hello@brighttribe.com</a>.</p>
+        <p>Based on the applicable laws of your country or state of residence, you may have the right to request access to the personal information we collect from you, correct inaccuracies, or delete your personal information.</p>
+        <p><strong>To request deletion of your data:</strong> Email us at <a href="mailto:hello@brighttribe.com">hello@brighttribe.com</a> with the subject line "Data Deletion Request." We will process your request within 30 days in accordance with applicable law.</p>
+        <p>Note: Because BibleSpeak.org does not require account creation, we collect only anonymized analytics and advertising data. Most deletion requests will be handled by opting out of Google Analytics and Google AdSense cookies through your browser settings or Google&apos;s opt-out tools at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>.</p>
 
       </div>
     </main>
