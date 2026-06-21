@@ -390,7 +390,7 @@ async function WordPage({ slug }: { slug: string }) {
               </div>
               <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-3 bg-slate-50 rounded-xl px-4 py-3">
                 <p className="text-sm text-slate-600 font-medium">
-                  New Bible pronunciation every day — don&apos;t miss one.
+                  Hear every Bible name pronounced correctly — free on YouTube.
                 </p>
                 <a
                   href="https://www.youtube.com/channel/UCCUCdfSvI-kQWwh207T_k-Q?sub_confirmation=1"
