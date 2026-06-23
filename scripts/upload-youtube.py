@@ -26,9 +26,14 @@ VIDEOS_DIR = BASE / "videos"
 CONFIG_DIR = BASE / "config"
 WORDS_JSON = BASE / "data/words.json"
 
-SECRETS_FILE    = CONFIG_DIR / "client_secrets.json"
-TOKEN_FILE      = CONFIG_DIR / "youtube-token.json"
 PLAYLISTS_FILE  = CONFIG_DIR / "youtube-playlists.json"
+
+def get_project_files(project=1):
+    suffix = "" if project == 1 else f"_{project}"
+    return (
+        CONFIG_DIR / f"client_secrets{suffix}.json",
+        CONFIG_DIR / f"youtube-token{suffix}.json",
+    )
 
 SCOPES = [
     "https://www.googleapis.com/auth/youtube",
@@ -36,8 +41,8 @@ SCOPES = [
 ]
 
 
-def check_prerequisites():
-    if not SECRETS_FILE.exists():
+def check_prerequisites(secrets_file):
+    if not secrets_file.exists():
         print("Missing: config/client_secrets.json")
         print()
         print("To fix:")
@@ -61,7 +66,7 @@ def check_prerequisites():
         sys.exit(1)
 
 
-def get_authenticated_service():
+def get_authenticated_service(secrets_file, token_file):
     from google.oauth2.credentials import Credentials
     from google.auth.transport.requests import Request
     from google_auth_oauthlib.flow import InstalledAppFlow
@@ -69,8 +74,8 @@ def get_authenticated_service():
 
     creds = None
 
-    if TOKEN_FILE.exists():
-        creds = Credentials.from_authorized_user_file(str(TOKEN_FILE), SCOPES)
+    if token_file.exists():
+        creds = Credentials.from_authorized_user_file(str(token_file), SCOPES)
         if creds.expired and creds.refresh_token:
             creds.refresh(Request())
 
@@ -84,10 +89,10 @@ def get_authenticated_service():
         print("     DO NOT click 'Brian Dempsey' or the email address")
         print("=" * 60)
         print()
-        flow = InstalledAppFlow.from_client_secrets_file(str(SECRETS_FILE), SCOPES)
+        flow = InstalledAppFlow.from_client_secrets_file(str(secrets_file), SCOPES)
         creds = flow.run_local_server(port=0, prompt='consent')
 
-    TOKEN_FILE.write_text(creds.to_json())
+    token_file.write_text(creds.to_json())
     youtube = build("youtube", "v3", credentials=creds)
 
     # Verify we're on the right channel
@@ -102,7 +107,7 @@ def get_authenticated_service():
             print(f"ERROR: Authenticated as '{ch_title}' — WRONG CHANNEL")
             print("Delete the token and re-run, then pick 'Pronunciation Station'")
             print("=" * 60)
-            TOKEN_FILE.unlink(missing_ok=True)
+            token_file.unlink(missing_ok=True)
             sys.exit(1)
         print(f"  Authenticated as: {ch_title} ({ch_id})")
 
@@ -228,19 +233,16 @@ def upload_captions(youtube, video_id, slug, video_type):
 
 
 def add_to_playlist(youtube, video_id, playlist_id):
-    try:
-        youtube.playlistItems().insert(
-            part="snippet",
-            body={
-                "snippet": {
-                    "playlistId": playlist_id,
-                    "resourceId": {"kind": "youtube#video", "videoId": video_id},
-                }
+    youtube.playlistItems().insert(
+        part="snippet",
+        body={
+            "snippet": {
+                "playlistId": playlist_id,
+                "resourceId": {"kind": "youtube#video", "videoId": video_id},
             }
-        ).execute()
-        print(f"  Added to playlist.")
-    except Exception as e:
-        print(f"  Warning: playlist add failed: {e}")
+        }
+    ).execute()
+    print(f"  Added to playlist.")
 
 
 def save_video_id(slug, video_type, video_id):
@@ -268,6 +270,7 @@ def main():
     parser = argparse.ArgumentParser(description="Upload a BibleSpeak video to YouTube.")
     parser.add_argument("slug", help="Word slug (e.g. aaron-pronunciation)")
     parser.add_argument("--type", required=True, choices=["long", "short"], help="Video type")
+    parser.add_argument("--project", type=int, default=1, help="Google Cloud project number (1, 2, 3, ...)")
     args = parser.parse_args()
 
     words = json.loads(WORDS_JSON.read_text())
@@ -276,12 +279,13 @@ def main():
         print(f"Error: slug '{args.slug}' not found in words.json")
         sys.exit(1)
 
-    check_prerequisites()
+    secrets_file, token_file = get_project_files(args.project)
+    check_prerequisites(secrets_file)
 
     playlists = json.loads(PLAYLISTS_FILE.read_text())
     playlist_id = playlists[args.type]
 
-    youtube = get_authenticated_service()
+    youtube = get_authenticated_service(secrets_file, token_file)
 
     # Skip upload if video ID already saved
     ids_file = VIDEOS_DIR / f"{args.slug}-youtube-ids.json"
@@ -295,7 +299,12 @@ def main():
 
     upload_thumbnail(youtube, video_id, args.slug, args.type)
     upload_captions(youtube, video_id, args.slug, args.type)
-    add_to_playlist(youtube, video_id, playlist_id)
+    try:
+        add_to_playlist(youtube, video_id, playlist_id)
+    except Exception as e:
+        print(f"  Error: playlist add failed: {e}")
+        print(f"\nFailed! Video {video_id} was uploaded but NOT added to playlist.")
+        sys.exit(1)
 
     print(f"\nDone! Video ID: {video_id}")
     print(f"URL: https://www.youtube.com/watch?v={video_id}")
