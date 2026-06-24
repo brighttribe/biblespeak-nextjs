@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
-import Script from 'next/script'
-import { GoogleAnalytics } from '@next/third-parties/google'
 import SearchBar from '@/components/SearchBar'
 import MobileMenu from '@/components/MobileMenu'
 import PostHogProvider from '@/components/PostHogProvider'
+import CookieBanner from '@/components/CookieBanner'
+import CookieSettingsLink from '@/components/CookieSettingsLink'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' })
@@ -93,20 +93,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <span>Free to use and supported by advertising.</span>
                 <Link href="/privacy-policy/" className="hover:text-white transition-colors">Privacy Policy</Link>
                 <Link href="/terms/" className="hover:text-white transition-colors">Terms of Service</Link>
+                <Link href="/cookie-policy/" className="hover:text-white transition-colors">Cookie Policy</Link>
+                <CookieSettingsLink />
               </div>
             </div>
           </div>
         </footer>
 
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2677571790916419"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
+        <CookieBanner />
         </PostHogProvider>
       </body>
-      <GoogleAnalytics gaId="G-C4ES3L9CPJ" />
     </html>
   )
 }

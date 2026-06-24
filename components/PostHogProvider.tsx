@@ -11,6 +11,7 @@ export default function PostHogProvider({ children }: { children: React.ReactNod
       person_profiles: 'identified_only',
       capture_pageview: true,
       capture_pageleave: true,
+      opt_out_capturing_by_default: true,
     })
   }, [])
 
