@@ -5,6 +5,7 @@ import { getAllWordSlugs, getWordBySlug, getWordsByLetter, getAllWords } from '@
 import AudioPlayer from '@/components/AudioPlayer'
 import AdUnit from '@/components/AdUnit'
 import BackToTop from '@/components/BackToTop'
+import LazyYouTube from '@/components/LazyYouTube'
 import Link from 'next/link'
 
 const LETTERS = 'abcdefghijklmnopqrstuvwxyz'.split('')
@@ -360,6 +361,26 @@ async function WordPage({ slug }: { slug: string }) {
 
       {/* Content cards */}
       <div className="max-w-3xl mx-auto px-4 py-8 space-y-4">
+        {word.youtube_id_long && (
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+            <div className="px-6 py-3.5 border-b border-slate-100 bg-slate-50 flex items-center gap-2">
+              <div className="w-1.5 h-4 bg-brand rounded-full" />
+              <h2 className="text-xs font-semibold text-slate-500 uppercase tracking-widest flex-1">Pronunciation Video</h2>
+              <a
+                href={`https://www.youtube.com/watch?v=${word.youtube_id_long}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-medium text-brand hover:underline shrink-0"
+              >
+                Watch on YouTube →
+              </a>
+            </div>
+            <div className="px-6 py-5">
+              <LazyYouTube videoId={word.youtube_id_long} title={`How to Pronounce ${word.title}`} />
+            </div>
+          </div>
+        )}
+
         {word.meaning && (
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             <div className="px-6 py-3.5 border-b border-slate-100 bg-slate-50 flex items-center gap-2">
