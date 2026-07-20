@@ -6,6 +6,9 @@ import AudioPlayer from '@/components/AudioPlayer'
 import AdUnit from '@/components/AdUnit'
 import BackToTop from '@/components/BackToTop'
 import LazyYouTube from '@/components/LazyYouTube'
+import BookPromo from '@/components/BookPromo'
+import BookRecommendations from '@/components/BookRecommendations'
+import { HOWTO_BOOKS, classifyWord, getFeaturedBooks } from '@/lib/books'
 import Link from 'next/link'
 
 const LETTERS = 'abcdefghijklmnopqrstuvwxyz'.split('')
@@ -189,6 +192,8 @@ async function WordPage({ slug }: { slug: string }) {
     .filter((w) => w.slug !== slug && w.letter === word.letter)
     .slice(0, 10)
 
+  const featured = getFeaturedBooks(classifyWord(word.title, word.content), word.title)
+
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://biblespeak.org').trim()
   const pageUrl = `${siteUrl}/${word.slug}/`
 
@@ -359,8 +364,11 @@ async function WordPage({ slug }: { slug: string }) {
 
       </div>
 
-      {/* Content cards */}
-      <div className="max-w-3xl mx-auto px-4 py-8 space-y-4">
+      {/* Content + sidebar */}
+      <div className="max-w-6xl mx-auto px-4 py-8 grid lg:grid-cols-[1fr_260px] gap-6 items-start">
+        <div className="order-2 lg:order-1 space-y-4">
+        <BookRecommendations books={featured.books} title={featured.title} />
+
         {word.youtube_id_long && (
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             <div className="px-6 py-3.5 border-b border-slate-100 bg-slate-50 flex items-center gap-2">
@@ -396,8 +404,6 @@ async function WordPage({ slug }: { slug: string }) {
 
         {word.content && (
           <>
-            <AdUnit slot="6127268085" />
-
             <details open className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden group">
               <summary className="px-6 py-3.5 border-b border-slate-100 bg-slate-50 flex items-center gap-2 cursor-pointer list-none select-none hover:bg-slate-100 transition-colors">
                 <div className="w-1.5 h-4 bg-brand rounded-full shrink-0" />
@@ -416,10 +422,10 @@ async function WordPage({ slug }: { slug: string }) {
                 />
               </div>
             </details>
-
-            <AdUnit slot="6127268085" />
           </>
         )}
+
+        <BookRecommendations books={HOWTO_BOOKS} title="How to Read, Study & Pray" />
 
         {relatedWords.length > 0 && (
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
@@ -445,6 +451,11 @@ async function WordPage({ slug }: { slug: string }) {
             </div>
           </div>
         )}
+        </div>
+
+        <div className="order-1 lg:order-2 lg:sticky lg:top-6">
+          <BookPromo />
+        </div>
       </div>
     </main>
   )
