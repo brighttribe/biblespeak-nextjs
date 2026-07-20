@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { getAllWords } from '@/lib/data'
 import { audioUrl } from '@/lib/supabase'
 import AudioPlayer from '@/components/AudioPlayer'
-import AdUnit from '@/components/AdUnit'
 
 export const metadata: Metadata = {
   title: 'New Testament Names Pronunciation — Audio Guide | BibleSpeak.org',
@@ -73,7 +72,6 @@ export default async function NewTestamentNamesPronunciation() {
           <p>This list covers the full cast of named individuals in the New Testament: disciples, church leaders, Roman officials, and the women named with striking specificity in the Gospels and Acts. Figures like Nicodemus, Zacchaeus, and Cornelius appear only briefly in the text but carry names that readers consistently hesitate over. The audio recordings below give you a confident baseline for every one.</p>
         </div>
 
-        <AdUnit slot="6127268085" />
 
         <p className="text-slate-500 text-sm mb-6">{words.length} entries</p>
 

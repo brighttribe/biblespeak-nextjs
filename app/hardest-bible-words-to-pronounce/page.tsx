@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { getAllWords } from '@/lib/data'
 import { audioUrl } from '@/lib/supabase'
 import AudioPlayer from '@/components/AudioPlayer'
-import AdUnit from '@/components/AdUnit'
 
 export const metadata: Metadata = {
   title: 'The Hardest Bible Words to Pronounce — Audio Guide | BibleSpeak.org',
@@ -170,7 +169,6 @@ export default function HardestBibleWordsPronunciationPage() {
             Understanding these five patterns resolves the majority of pronunciation confusion. The hardest words aren&rsquo;t arbitrary &mdash; they&rsquo;re hard for reasons that, once learned, apply across hundreds of biblical terms.
           </p>
 
-          <AdUnit slot="6127268085" className="my-8" />
 
           <div className="max-w-4xl mx-auto px-4 py-8">
             {words.map((word) => (

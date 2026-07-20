@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { getAllWords } from '@/lib/data'
 import { audioUrl } from '@/lib/supabase'
 import AudioPlayer from '@/components/AudioPlayer'
-import AdUnit from '@/components/AdUnit'
 
 export const metadata: Metadata = {
   title: "How to Pronounce the Apostles' Names — Audio Guide | BibleSpeak.org",
@@ -132,7 +131,6 @@ export default function ApostlesNamesPronunciationPage() {
             <li><strong>Bartholomew</strong> = possibly <strong>Nathanael</strong> (John 1:45-49) &mdash; &ldquo;bar Ptolemy&rdquo; may be a patronymic, Nathanael a given name</li>
           </ul>
 
-          <AdUnit slot="6127268085" className="my-8" />
 
           <div className="mt-6">
             {words.map((word) => (

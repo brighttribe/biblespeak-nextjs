@@ -20,17 +20,6 @@ function loadGA4() {
   document.head.appendChild(s2);
 }
 
-function loadAdSense() {
-  const pub = 'ca-pub-2677571790916419';
-  if (document.querySelector(`script[data-adsense="${pub}"]`)) return;
-  const s = document.createElement('script');
-  s.async = true;
-  s.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${pub}`;
-  s.setAttribute('crossorigin', 'anonymous');
-  s.setAttribute('data-adsense', pub);
-  document.head.appendChild(s);
-}
-
 // ── toggle switch ─────────────────────────────────────────────────────────────
 
 function Toggle({ checked, onChange, disabled }: { checked: boolean; onChange?: () => void; disabled?: boolean }) {
@@ -133,7 +122,6 @@ export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [statsOn, setStatsOn] = useState(false);
-  const [adsOn, setAdsOn] = useState(false);
 
   useEffect(() => {
     const consent = getConsent();
@@ -142,9 +130,6 @@ export default function CookieBanner() {
       if (consent.statistics) {
         loadGA4();
         posthog.opt_in_capturing();
-      }
-      if (consent.advertising) {
-        loadAdSense();
       }
     } else {
       setVisible(true);
@@ -160,10 +145,9 @@ export default function CookieBanner() {
   }, []);
 
   function acceptAll() {
-    setConsent({ statistics: true, advertising: true });
+    setConsent({ statistics: true, advertising: false });
     loadGA4();
     posthog.opt_in_capturing();
-    loadAdSense();
     setVisible(false);
   }
 
@@ -179,14 +163,13 @@ export default function CookieBanner() {
   }
 
   function saveAndClose() {
-    setConsent({ statistics: statsOn, advertising: adsOn });
+    setConsent({ statistics: statsOn, advertising: false });
     if (statsOn) {
       loadGA4();
       posthog.opt_in_capturing();
     } else {
       posthog.opt_out_capturing();
     }
-    if (adsOn) loadAdSense();
     setShowModal(false);
   }
 
@@ -202,7 +185,7 @@ export default function CookieBanner() {
         <div className="fixed bottom-0 inset-x-0 z-50 bg-white border-t border-slate-200 shadow-lg">
           <div className="max-w-5xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <p className="flex-1 text-sm text-slate-700">
-              We use cookies to understand how visitors use BibleSpeak.org and to show relevant ads. You can choose which cookies to allow.{' '}
+              We use cookies to understand how visitors use BibleSpeak.org. You can choose which cookies to allow.{' '}
               <button
                 onClick={handleViewPolicy}
                 className="underline text-[#4f46e5] hover:text-[#4338ca] transition-colors"
@@ -288,25 +271,6 @@ export default function CookieBanner() {
                 <CookieTable
                   rows={[
                     { name: 'ph_*', purpose: 'PostHog — records behavioral analytics', duration: 'Session / 1 year' },
-                  ]}
-                />
-              </AccordionRow>
-
-              {/* Advertising */}
-              <AccordionRow
-                title="Advertising"
-                description="Allow personalized ads that help keep BibleSpeak.org free."
-                checked={adsOn}
-                onToggle={() => setAdsOn((v) => !v)}
-              >
-                <p className="text-xs text-slate-500 mt-3 mb-2">
-                  These cookies are used by Google AdSense and DoubleClick to serve ads. They help keep BibleSpeak.org free.
-                </p>
-                <CookieTable
-                  rows={[
-                    { name: '_gads', purpose: 'Google Ads — stores ad preferences', duration: '1 year' },
-                    { name: 'IDE', purpose: 'Google DoubleClick — used for targeted advertising', duration: '1 year' },
-                    { name: 'test_cookie', purpose: 'Google — checks browser cookie support', duration: 'Session' },
                   ]}
                 />
               </AccordionRow>

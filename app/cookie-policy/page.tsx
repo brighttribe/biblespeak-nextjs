@@ -19,7 +19,7 @@ export default function CookiePolicyPage() {
           Cookies are small text files that a website stores on your browser or device when you visit. They help the site remember information about your visit — like your preferences — so that the experience works correctly on your next visit.
         </p>
         <p>
-          Cookies are set either by us ("first-party cookies") or by third-party services we use, such as Google Analytics and Google AdSense ("third-party cookies").
+          Cookies are set either by us ("first-party cookies") or by third-party services we use, such as Google Analytics ("third-party cookies").
         </p>
 
         <hr />
@@ -112,56 +112,9 @@ export default function CookiePolicyPage() {
 
         <hr />
 
-        <h2>Advertising Cookies</h2>
-        <p>
-          Advertising cookies are used to serve ads that are relevant to you. BibleSpeak.org is free to use, and advertising helps us keep it that way.
-        </p>
-
-        <h3>Google AdSense and DoubleClick</h3>
-        <p>
-          We use Google AdSense to display ads. Google and its partners may use these cookies to serve ads based on your prior visits to BibleSpeak.org and other websites. These cookies are only set if you accept advertising cookies.
-        </p>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm text-left border-collapse">
-            <thead>
-              <tr className="border-b border-slate-200">
-                <th className="py-2 pr-4 font-semibold text-slate-600 whitespace-nowrap">Cookie</th>
-                <th className="py-2 pr-4 font-semibold text-slate-600">Purpose</th>
-                <th className="py-2 font-semibold text-slate-600 whitespace-nowrap">Duration</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-slate-100">
-                <td className="py-2 pr-4 font-mono text-slate-700">_gads</td>
-                <td className="py-2 pr-4">Google Ads — stores ad preferences</td>
-                <td className="py-2 whitespace-nowrap">1 year</td>
-              </tr>
-              <tr className="border-b border-slate-100">
-                <td className="py-2 pr-4 font-mono text-slate-700">IDE</td>
-                <td className="py-2 pr-4">Google DoubleClick — used for targeted advertising</td>
-                <td className="py-2 whitespace-nowrap">1 year</td>
-              </tr>
-              <tr className="border-b border-slate-100">
-                <td className="py-2 pr-4 font-mono text-slate-700">test_cookie</td>
-                <td className="py-2 pr-4">Google — checks browser cookie support</td>
-                <td className="py-2 whitespace-nowrap">Session</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p>
-          You can opt out of personalized advertising by visiting{' '}
-          <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer">
-            Google&apos;s Ad Settings
-          </a>
-          . Note that opting out does not mean you will stop seeing ads — it means they will be less relevant to you.
-        </p>
-
-        <hr />
-
         <h2>How to Manage Your Cookie Preferences</h2>
         <p>
-          You can update your cookie preferences at any time by clicking the <strong>Cookie Settings</strong> link in the footer of any page. This lets you enable or disable Statistics and Advertising cookies without affecting Essential cookies.
+          You can update your cookie preferences at any time by clicking the <strong>Cookie Settings</strong> link in the footer of any page. This lets you enable or disable Statistics cookies without affecting Essential cookies.
         </p>
         <p>
           You can also control cookies through your browser settings. Most browsers allow you to block or delete cookies. Note that blocking certain cookies may affect how BibleSpeak.org works. For more information, see your browser&apos;s help documentation:

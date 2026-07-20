@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { getAllWords } from '@/lib/data'
 import { audioUrl } from '@/lib/supabase'
 import AudioPlayer from '@/components/AudioPlayer'
-import AdUnit from '@/components/AdUnit'
 
 export const metadata: Metadata = {
   title: 'Bible Pronunciation Audio — Free Recordings for 857 Words | BibleSpeak.org',
@@ -130,7 +129,6 @@ export default async function BiblePronunciationAudioPage() {
             The entries below include some of the most-searched and most-challenging words in our database, selected to give you a representative sample of what&rsquo;s available. Every word in the full database has an audio recording.
           </p>
 
-          <AdUnit slot="6127268085" className="my-8" />
 
           <div className="mt-6">
             {words.map((word) => (

@@ -3,7 +3,6 @@ import type { Metadata } from 'next'
 import { audioUrl } from '@/lib/supabase'
 import { getAllWordSlugs, getWordBySlug, getWordsByLetter, getAllWords } from '@/lib/data'
 import AudioPlayer from '@/components/AudioPlayer'
-import AdUnit from '@/components/AdUnit'
 import BackToTop from '@/components/BackToTop'
 import LazyYouTube from '@/components/LazyYouTube'
 import BookPromo from '@/components/BookPromo'
@@ -149,8 +148,6 @@ async function LetterPage({ letter }: { letter: string }) {
             </Link>
           ))}
         </div>
-
-        <AdUnit slot="6127268085" className="mb-4" />
 
         {/* Word list */}
         <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">

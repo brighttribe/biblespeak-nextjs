@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { getAllWords } from '@/lib/data'
 import { audioUrl } from '@/lib/supabase'
 import AudioPlayer from '@/components/AudioPlayer'
-import AdUnit from '@/components/AdUnit'
 
 export const metadata: Metadata = {
   title: 'Biblical Names Pronunciation — Phonetic Guide with Audio | BibleSpeak.org',
@@ -146,7 +145,6 @@ export default function BiblicalNamesPronunciationPage() {
             Bartholomew (bar-THOL-oh-myoo, not BARTH-oh-loo), Thaddaeus (THAD-ee-uhs), Nicodemus (nik-oh-DEE-muhs), Zacchaeus (za-KEE-uhs), Zechariah (zek-uh-RY-uh), Obadiah (oh-buh-DY-uh). All of them have the stress further back than readers expect. The full list below covers 34 of the most-referenced biblical names with audio for each.
           </p>
 
-          <AdUnit slot="6127268085" className="my-8" />
 
           <div className="mt-6">
             {words.map((word) => (

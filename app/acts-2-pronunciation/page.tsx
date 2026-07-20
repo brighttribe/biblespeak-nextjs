@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { getAllWords } from '@/lib/data'
 import { audioUrl } from '@/lib/supabase'
 import AudioPlayer from '@/components/AudioPlayer'
-import AdUnit from '@/components/AdUnit'
 
 export const metadata: Metadata = {
   title: 'How to Pronounce the Words in Acts 2 — Audio Guide | BibleSpeak.org',
@@ -130,7 +129,6 @@ export default function Acts2PronunciationPage() {
             The list below includes every nation, region, and city mentioned in the Pentecost account, along with related locations Paul visited on his missionary journeys through the same regions.
           </p>
 
-          <AdUnit slot="6127268085" className="my-8" />
 
           <div className="max-w-4xl mx-auto px-4 py-8">
             {words.map((word) => (

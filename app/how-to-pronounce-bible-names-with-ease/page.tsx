@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { getAllWords } from '@/lib/data'
 import { audioUrl } from '@/lib/supabase'
 import AudioPlayer from '@/components/AudioPlayer'
-import AdUnit from '@/components/AdUnit'
 
 export const metadata: Metadata = {
   title: "How to Pronounce Bible Names With Ease — Beginner's Guide | BibleSpeak.org",
@@ -138,7 +137,6 @@ export default function HowToPronounceBibleNamesWithEasePage() {
             These are the names that appear most frequently in Scripture readings, church calendars, and Bible study curricula. They&rsquo;re also the names most likely to be read aloud in public — which makes getting them right worth the five minutes it takes to practice.
           </p>
 
-          <AdUnit slot="6127268085" className="my-8" />
 
           <div className="mt-6">
             {words.map((word) => (

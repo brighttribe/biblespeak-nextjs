@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { getAllWords } from '@/lib/data'
 import { audioUrl } from '@/lib/supabase'
 import AudioPlayer from '@/components/AudioPlayer'
-import AdUnit from '@/components/AdUnit'
 
 export const metadata: Metadata = {
   title: 'Women of the Bible Pronunciation — Names & Audio Guide | BibleSpeak.org',
@@ -85,7 +84,6 @@ export default async function WomenOfTheBiblePronunciation() {
           </ul>
         </div>
 
-        <AdUnit slot="6127268085" />
 
         <p className="text-slate-500 text-sm mb-6">{words.length} entries</p>
 

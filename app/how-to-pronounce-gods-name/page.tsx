@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { getAllWords } from '@/lib/data'
 import { audioUrl } from '@/lib/supabase'
 import AudioPlayer from '@/components/AudioPlayer'
-import AdUnit from '@/components/AdUnit'
 
 export const metadata: Metadata = {
   title: "How to Pronounce God's Name — Yahweh, Jehovah, Yeshua | BibleSpeak.org",
@@ -215,7 +214,6 @@ export default function HowToPronounceGodsNamePage() {
             </li>
           </ul>
 
-          <AdUnit slot="6127268085" className="my-8" />
 
           {/* Static word entries */}
           <div className="mt-6">

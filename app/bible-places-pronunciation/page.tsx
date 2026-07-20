@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { getAllWords } from '@/lib/data'
 import { audioUrl } from '@/lib/supabase'
 import AudioPlayer from '@/components/AudioPlayer'
-import AdUnit from '@/components/AdUnit'
 
 export const metadata: Metadata = {
   title: 'Bible Places Pronunciation — Cities, Regions & Lands | BibleSpeak.org',
@@ -144,7 +143,6 @@ export default function BiblePlacesPronunciationPage() {
             The places below span the Old and New Testaments: the cities where Jesus was born, taught, and died; the regions Paul traveled through on his missionary journeys; and the ancient kingdoms whose names echo through prophecy and history. Each entry includes a phonetic spelling and an audio recording you can play directly in your browser.
           </p>
 
-          <AdUnit slot="6127268085" className="my-8" />
 
           <div className="max-w-4xl mx-auto px-4 py-8">
             {words.map((word) => (
