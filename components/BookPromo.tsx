@@ -8,17 +8,24 @@ export default function BookPromo() {
         <h2 className="text-xs font-semibold text-slate-500 uppercase tracking-widest">From the Author</h2>
       </div>
       <div className="p-5 text-center">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={FEATURED_BOOK.cover}
-          alt={`${FEATURED_BOOK.title} book cover`}
-          width={160}
-          height={240}
-          className="mx-auto rounded-lg shadow-md mb-4"
-        />
-        <h3 className="font-bold text-slate-900 leading-snug mb-1">{FEATURED_BOOK.title}</h3>
-        <p className="text-sm text-slate-500 mb-1">{FEATURED_BOOK.subtitle}</p>
-        <p className="text-xs text-slate-400 mb-4">by {FEATURED_BOOK.author}</p>
+        <a
+          href={amazonLink(FEATURED_BOOK.asin)}
+          target="_blank"
+          rel="noopener noreferrer sponsored"
+          className="block group"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={FEATURED_BOOK.cover}
+            alt={`${FEATURED_BOOK.title} book cover`}
+            width={160}
+            height={240}
+            className="mx-auto rounded-lg shadow-md mb-4 group-hover:shadow-lg transition-shadow"
+          />
+          <h3 className="font-bold text-slate-900 leading-snug mb-1 group-hover:text-brand transition-colors">{FEATURED_BOOK.title}</h3>
+          <p className="text-sm text-slate-500 mb-1">{FEATURED_BOOK.subtitle}</p>
+          <p className="text-xs text-slate-400 mb-4">by {FEATURED_BOOK.author}</p>
+        </a>
         <a
           href={amazonLink(FEATURED_BOOK.asin)}
           target="_blank"
