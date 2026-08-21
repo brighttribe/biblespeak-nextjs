@@ -77,16 +77,17 @@ def get_authenticated_service(secrets_file, token_file):
     if token_file.exists():
         creds = Credentials.from_authorized_user_file(str(token_file), SCOPES)
         if creds.expired and creds.refresh_token:
-            creds.refresh(Request())
+            try:
+                creds.refresh(Request())
+            except Exception as e:
+                print(f"Token refresh failed ({e}) — falling back to interactive reauth")
+                creds = None
 
     if not creds or not creds.valid:
         print()
         print("=" * 60)
         print("IMPORTANT: When the browser opens:")
-        print("  1. Sign in with graceonlinelibrary@gmail.com")
-        print("  2. You will see a channel selection screen")
-        print("  3. YOU MUST CLICK 'Pronunciation Station'")
-        print("     DO NOT click 'Brian Dempsey' or the email address")
+        print("  Sign in with graceonlinelibrary@gmail.com")
         print("=" * 60)
         print()
         flow = InstalledAppFlow.from_client_secrets_file(str(secrets_file), SCOPES)
@@ -101,11 +102,11 @@ def get_authenticated_service(secrets_file, token_file):
     if items:
         ch_title = items[0]['snippet']['title']
         ch_id = items[0]['id']
-        if 'pronunciation' not in ch_title.lower() and 'station' not in ch_title.lower():
+        if 'sound doctrine' not in ch_title.lower():
             print()
             print("=" * 60)
             print(f"ERROR: Authenticated as '{ch_title}' — WRONG CHANNEL")
-            print("Delete the token and re-run, then pick 'Pronunciation Station'")
+            print("Delete the token and re-run, then pick 'Sound Doctrine HQ'")
             print("=" * 60)
             token_file.unlink(missing_ok=True)
             sys.exit(1)
