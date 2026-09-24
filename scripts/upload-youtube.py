@@ -303,9 +303,8 @@ def main():
     try:
         add_to_playlist(youtube, video_id, playlist_id)
     except Exception as e:
-        print(f"  Error: playlist add failed: {e}")
-        print(f"\nFailed! Video {video_id} was uploaded but NOT added to playlist.")
-        sys.exit(1)
+        print(f"  Warning: playlist add failed: {e}")
+        print(f"  Video {video_id} is uploaded and live, but NOT in the playlist — add it manually.")
 
     print(f"\nDone! Video ID: {video_id}")
     print(f"URL: https://www.youtube.com/watch?v={video_id}")
