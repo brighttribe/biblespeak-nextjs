@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact/" },
   title: 'Contact',
   description: 'Get in touch with the BibleSpeak.org team.',
   openGraph: {

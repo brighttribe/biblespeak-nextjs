@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/cookie-policy/" },
   title: 'Cookie Policy | BibleSpeak.org',
   description: 'Cookie policy for BibleSpeak.org — what cookies we use and how to manage them.',
   robots: { index: false, follow: false },

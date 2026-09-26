@@ -5,6 +5,7 @@ import { audioUrl } from '@/lib/supabase'
 import AudioPlayer from '@/components/AudioPlayer'
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/bible-places-pronunciation/" },
   title: 'Bible Places Pronunciation — Cities, Regions & Lands | BibleSpeak.org',
   description: 'Learn how to pronounce the cities, regions, mountains, and lands of the Bible. Audio recordings and phonetic guides for 30+ biblical place names.',
   openGraph: {

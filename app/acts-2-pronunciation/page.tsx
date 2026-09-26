@@ -5,6 +5,7 @@ import { audioUrl } from '@/lib/supabase'
 import AudioPlayer from '@/components/AudioPlayer'
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/acts-2-pronunciation/" },
   title: 'How to Pronounce the Words in Acts 2 — Audio Guide | BibleSpeak.org',
   description: 'Hear the correct pronunciation of every difficult word in Acts 2 — Parthians, Medes, Elamites, Phrygia, Pamphylia, Cyrene, and more. Audio recordings and phonetic spellings.',
   openGraph: {

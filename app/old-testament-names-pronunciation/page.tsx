@@ -5,6 +5,7 @@ import { audioUrl } from '@/lib/supabase'
 import AudioPlayer from '@/components/AudioPlayer'
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/old-testament-names-pronunciation/" },
   title: 'Old Testament Names Pronunciation — Audio Guide | BibleSpeak.org',
   description: 'Correct pronunciation of Old Testament names — from Abraham to Zechariah. Audio recordings, phonetic spellings, and biblical context for every name.',
   openGraph: {

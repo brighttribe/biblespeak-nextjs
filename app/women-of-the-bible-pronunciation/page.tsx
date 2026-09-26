@@ -5,6 +5,7 @@ import { audioUrl } from '@/lib/supabase'
 import AudioPlayer from '@/components/AudioPlayer'
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/women-of-the-bible-pronunciation/" },
   title: 'Women of the Bible Pronunciation — Names & Audio Guide | BibleSpeak.org',
   description: "Correct pronunciation of women's names in the Bible — Mary, Ruth, Deborah, Esther, Priscilla, Lydia, and more. Audio recordings and phonetic spellings.",
   openGraph: {

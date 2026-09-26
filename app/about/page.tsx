@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/about/" },
   title: 'About | Bible Word Pronunciation Guide',
   description: 'BibleSpeak.org is the most comprehensive Bible word pronunciation resource on the web — audio guides, phonetic spelling, and biblical context for 858 words and names.',
   openGraph: {

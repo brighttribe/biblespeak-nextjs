@@ -5,6 +5,7 @@ import { audioUrl } from '@/lib/supabase'
 import AudioPlayer from '@/components/AudioPlayer'
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/bible-prophets-pronunciation/" },
   title: 'Bible Prophets Pronunciation — All Major & Minor Prophets | BibleSpeak.org',
   description: 'How to pronounce the names of every major and minor prophet in the Bible — Isaiah, Jeremiah, Habakkuk, Zephaniah, and more. Audio recordings included.',
   openGraph: {

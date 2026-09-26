@@ -5,6 +5,7 @@ import { audioUrl } from '@/lib/supabase'
 import AudioPlayer from '@/components/AudioPlayer'
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/how-to-pronounce-gods-name/" },
   title: "How to Pronounce God's Name — Yahweh, Jehovah, Yeshua | BibleSpeak.org",
   description:
     "How to correctly pronounce the names of God in the Bible — YHWH, Yahweh, Jehovah, Elohim, Adonai, Yeshua, El Shaddai, and more. Phonetic guides and biblical context.",

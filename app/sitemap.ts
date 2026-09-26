@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { createSupabaseClient } from '@/lib/supabase'
+import { getAllWords } from '@/lib/data'
 
 const LETTERS = 'abcdefghijklmnopqrstuvwxyz'.split('')
 
@@ -20,12 +20,14 @@ const HUB_PAGES = [
 ]
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const supabase = createSupabaseClient()
-  const { data: words } = await supabase.from('words').select('slug')
+  // Read from the same local words.json the pages render from. The sitemap
+  // used to query Supabase, which returned nothing at build time and silently
+  // dropped every word page out of the sitemap.
+  const words = getAllWords()
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://biblespeak.org'
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://biblespeak.org').trim()
 
-  const wordPages: MetadataRoute.Sitemap = (words ?? []).map((word) => ({
+  const wordPages: MetadataRoute.Sitemap = words.map((word) => ({
     url: `${siteUrl}/${word.slug}/`,
     changeFrequency: 'monthly',
     priority: 0.8,

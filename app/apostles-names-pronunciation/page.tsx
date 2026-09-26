@@ -5,6 +5,7 @@ import { audioUrl } from '@/lib/supabase'
 import AudioPlayer from '@/components/AudioPlayer'
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/apostles-names-pronunciation/" },
   title: "How to Pronounce the Apostles' Names — Audio Guide | BibleSpeak.org",
   description: "Correct pronunciation of all 12 apostles' names plus Paul — Peter, Andrew, Bartholomew, Thaddaeus, and more. Audio recordings and phonetic spellings.",
   openGraph: {

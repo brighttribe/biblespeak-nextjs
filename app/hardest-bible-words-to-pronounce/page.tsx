@@ -5,6 +5,7 @@ import { audioUrl } from '@/lib/supabase'
 import AudioPlayer from '@/components/AudioPlayer'
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/hardest-bible-words-to-pronounce/" },
   title: 'The Hardest Bible Words to Pronounce — Audio Guide | BibleSpeak.org',
   description: 'Think you can pronounce Nebuchadnezzar? Zerubbabel? Mephibosheth? These are the most difficult words in the Bible — with audio recordings and phonetic spellings to help.',
   openGraph: {

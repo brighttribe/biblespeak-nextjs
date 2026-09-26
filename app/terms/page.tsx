@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/terms/" },
   title: 'Terms of Service | BibleSpeak.org',
   description: 'Terms of service for BibleSpeak.org.',
   robots: { index: false, follow: false },

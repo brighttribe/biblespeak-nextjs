@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import SearchBar from '@/components/SearchBar'
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/" },
   title: 'How to Pronounce Bible Names & Words',
   description:
     'Learn how to correctly pronounce Bible words, names, and places. Audio pronunciation guides for 858 biblical terms.',

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/privacy-policy/" },
   title: 'Privacy Policy | BibleSpeak.org',
   description: 'Privacy policy for BibleSpeak.org — how we collect, use, and protect your information.',
   robots: { index: false, follow: false },

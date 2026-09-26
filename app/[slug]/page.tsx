@@ -36,13 +36,14 @@ export async function generateMetadata({
       description,
       openGraph: { type: 'website', title, description, url: `${siteUrl}/${letter}-words/` },
       twitter: { card: 'summary', title, description },
+      alternates: { canonical: `${siteUrl}/${letter}-words/` },
     }
   }
 
   const word = getWordBySlug(slug)
   if (!word) return {}
 
-  const full = `How to Pronounce ${word.title} Pronunciation`
+  const full = `How to Pronounce ${word.title}`
   const title = full.length <= 43 ? full : `${word.title} Pronunciation`
   const description = `Learn the correct pronunciation of ${word.title}${word.pronunciation ? ` (${word.pronunciation})` : ''} with an audio guide, phonetic spelling, and biblical context.`
   return {
@@ -50,6 +51,7 @@ export async function generateMetadata({
     description,
     openGraph: { type: 'article', title, description, url: `${siteUrl}/${slug}/` },
     twitter: { card: 'summary', title, description },
+    alternates: { canonical: `${siteUrl}/${slug}/` },
   }
 }
 

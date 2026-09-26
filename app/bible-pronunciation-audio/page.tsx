@@ -5,6 +5,7 @@ import { audioUrl } from '@/lib/supabase'
 import AudioPlayer from '@/components/AudioPlayer'
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/bible-pronunciation-audio/" },
   title: 'Bible Pronunciation Audio — Free Recordings for 857 Words | BibleSpeak.org',
   description: 'Free audio recordings for 857 Bible words and names. Click to hear the correct pronunciation of any biblical word — no signup, no download required.',
   openGraph: {
